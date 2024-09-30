@@ -1,0 +1,9 @@
+Power a website that can function as a catalog for customers to browse.
+Handle online exchanges and returns within one business day.
+Enable warranty purchases and claims.
+Create a system to log all online transactions, including orders, returns, exchanges.
+Allow pre-ordering of upcoming products.
+Allow discontinuation of items to support clearance events.
+Store and manage customer information.
+Allow expansion into different categories of products.
+Manage inventory accurately across physical and online stores.
