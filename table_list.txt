@@ -1,0 +1,26 @@
+Tables:
+- products:
+- product_lengths:
+- product_sizes:
+- product_shoe_sizes:
+- product_capacities:
+- product_categories: 
+- product_brands:
+- product_sizes:
+- locations:
+- warehouses:
+- stores:
+- inventory:
+- shipments: 
+- internal_shipments:
+- external_shipments:
+- transactions:
+- returns:
+- preorders: 
+- transaction_products:
+- exchanges: 
+- partners:
+- suppliers:
+- customers:
+- employees:
+- states:
