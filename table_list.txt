@@ -24,3 +24,146 @@ Tables:
 - customers:
 - employees:
 - states:
+
+products
+- product_id (PK)
+- product_name
+- product_sale_price
+- product_description
+- product_warranty_length
+- brand_name (FK)
+- product_category_id (FK)
+- product_discontinued
+
+products_length
+- product_id (PK/FK)
+- product_length
+
+products_size
+- product_id (PK/FK)
+- product_size (FK)
+
+products_shoe_sizes
+- product_id (PK/FK)
+- product_shoe_size
+
+products_capacities
+- product_id (PK/FK)
+- product_capacity
+
+product_categories
+- product_category_id (PK)
+- product_category_name
+
+product_brands
+- product_brand_id (PK)
+- product_brand_name
+
+product_sizes
+- product_size (PK)
+
+locations
+- location_id (PK)
+- location_address
+
+warehouses
+- location_id (PK/FK)
+- warehouse_name
+
+stores
+- location_id (PK/FK)
+- store_name
+
+inventory
+- product_id (CPK/FK)
+- location_id (CPK/FK(warehouses))
+
+shipments
+- shipment_id (PK)
+- shipment_dispatch_timestamp
+- shipment_tracking_number
+
+internal_shipments
+- shipment_id (PK/FK)
+- location_id (FK)
+- location_id (FK)
+- shipment_quantity
+- product_id (FK)
+
+external_shipments
+- shipment_id (PK/FK)
+- location_id (FK)
+- transaction_id (FK)
+- shipment_address_line_1
+- shipment_address_line_2
+- shipment_address_city
+- state_abbreviation (FK)
+- shipment_address_zip_code
+
+transactions
+- transaction_id (PK)
+- transaction_timestamp
+- partner_id (FK)
+- shipment_id (FK)
+- transaction_employee
+
+returns
+- transaction_id (PK/FK)
+- return_timestamp
+
+preorders
+- transaction_id (PK/FK)
+transaction_products
+- transaction_id (CPK/FK)
+- product_id (CPK/FK)
+- transaction_product_quantity
+- transaction_product_price
+
+exchanges
+- exchange_id (PK)
+- transaction_id (FK)
+- product_id (FK)
+- exchange_product_quantity
+- exchange_timestamp
+
+partners
+- partner_id (PK)
+- partner_name
+- partner_address_line_1
+- partner_address_line_2
+- partner_address_city
+- state_abbreviation (FK)
+- partner_address_zip_code
+- partner_phone_name
+- partner_email
+
+suppliers
+- partner_id (PK/FK)
+
+customers
+- partner_id (PK/FK)
+
+employees
+- employee_id (PK)
+- employee_name
+- location_id (FK)
+
+states
+- state_abbreviation (PK)
+- state_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
