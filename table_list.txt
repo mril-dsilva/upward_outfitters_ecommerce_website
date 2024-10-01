@@ -15,15 +15,15 @@ Tables:
 - internal_shipments(subset table): stores the internal shipment details like which two locations,the prduct and the quantity 
 - external_shipments(subset table): stores the shipment to customers with their details like address
 - transactions(data table):stores all the transactions like selling products and buying more stock
-- returns:
-- preorders: 
-- transaction_products:
-- exchanges: 
-- partners:
-- suppliers:
-- customers:
-- employees:
-- states:
+- returns (Subset): Stores returns made by customers.
+- preorders (Subset): Stores preoders made by customers.
+- transaction_products (Linking): Stores the items that is related to each transactions.
+- exchanges (Data): Stores exchanges made by customers.
+- partners (Data): Stores information about partners. A partner is either a supplier or a customer.
+- suppliers (Subset): Stores which partners are suppliers.
+- customers (Subset): Stores which parterns are customers.
+- employees (Data): Stores information about employees.
+- states (Validation): Stores names and abbreviations of US states.
 
 products
 - product_id (PK)
