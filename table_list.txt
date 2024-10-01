@@ -1,5 +1,5 @@
 Tables:
-- products:
+- products (Type): Main table that stores all of the products in the database system
 - product_lengths:
 - product_sizes:
 - product_shoe_sizes:
