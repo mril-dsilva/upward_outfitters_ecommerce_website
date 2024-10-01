@@ -1,13 +1,13 @@
 Tables:
-- products (Type): Main table that stores all of the products in the database system
-- product_lengths:
-- product_sizes:
-- product_shoe_sizes:
-- product_capacities:
-- product_categories: 
-- product_brands:
-- product_sizes:
-- locations:
+- products (Data): stores the basic data for all of the products in the database system.
+- product_lengths (Subset): stores the length of products with the length variant trait.
+- product_sizes (Subset): stores the size of products with the length variant trait.
+- product_shoe_sizes (Subset): stores the size of shoe products.
+- product_capacities (Subset): stores the capacity of products with the capacity variant trait.
+- product_categories (Validation): stores the names of all of the different categories of products that are in the database system, constraining the category field in products.
+- product_brands (Validation): stores the names of all of the different brands of products that are in the database system, constraining the brand field in products.
+- product_sizes (Validation): stores all of the different letter sizes that an article of clothing can take on, constraining what size can be stored in product_sizes.
+- locations (Data): stores all of the basic data for the physical locations. Also has a single entry for the online store. Is used to track which of Upward Outfitters' physical locations is being referenced in a shipment or transaction
 - warehouses:
 - stores:
 - inventory:
