@@ -64,7 +64,11 @@ product_sizes
 
 locations
 - location_id (PK)
-- location_address
+- location_address_line_1
+- location_address_line_2
+- location_address_city
+- state_abbreviation (FK)
+- location_address_zip_code
 
 warehouses
 - location_id (PK/FK)
