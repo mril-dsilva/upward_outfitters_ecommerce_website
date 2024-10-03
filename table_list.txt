@@ -111,7 +111,8 @@ transactions
 - transaction_timestamp
 - partner_id (FK)
 - shipment_id (FK)
-- transaction_employee
+- employee_id (FK)
+- store_id (FK)
 
 returns
 - transaction_id (PK/FK)
