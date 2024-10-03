@@ -2,41 +2,42 @@ FIELD SPECIFICATIONS
 
 GENERAL ELEMENTS
 
-Field Name:           state_abbreviation
-Parent Table:         states
+Field Name:           shipment_quantity
+Parent Table:         internal_shipments
 Alias(es):            _
 Specification Type:
-  Unique:  X
-  Generic: _
+  Unique:  _
+  Generic: X
   Replica: _
 Source Specification: _
-Shared By:            partners, locations, external_shipments
-Description:          The standardized two letter abbreviation of a US state.
+Shared By:            _
+Description:          The quantity of a specific product being shipped in the internal shipment.
+
 
 PHYSICAL ELEMENTS
 
-Data Type:            CHAR
-Length:               2
+Data Type:            INT
+Length:               _
 Decimal Places:       _
 Character Support:
-  Letters (A-Z):      X
-  Numbers (0-9):      _
+  Letters (A-Z):      _
+  Numbers (0-9):      X
   Keyboard (.,/$#%):  _
   Special (©®™Σπ):    _
 
 
 LOGICAL ELEMENTS
 
-Key Type:      Non:        _
-               Primary:    X
+Key Type:      Non:        X
+               Primary:    _
                Foreign:    _
                Alternate:  _
 
-Key Structure: Simple:     X
+Key Structure: Simple:     _
                Composite:  _
 
-Uniqueness:    Non-unique: _
-               Unique:     X
+Uniqueness:    Non-unique: X
+               Unique:     _
 
 Null Support:  Nulls OK:   _
                No nulls:   X
@@ -47,13 +48,13 @@ Values Entered By: User:   X
 Required Value:    No:     _
                    Yes:    X
 
-Range of Values:   Set of official two letter codes for the 50 US States
+Range of Values:   > 0
 
 Edit Rule:
-  Enter now, edits allowed:       _
-  Enter now, edits not allowed:   X
+  Enter now, edits allowed:       X
+  Enter now, edits not allowed:   _
   Enter later, edits allowed:     _
   Enter later, edits not allowed: _
   Not determined at this time:    _
 
-NOTES: This field is required and has predefined values. Will contain the states that we deliver to/ all states.
+NOTES: This field stores the quantity of the product being shipped between internal locations (for example, between warehouses).
