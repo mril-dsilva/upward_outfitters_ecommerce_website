@@ -34,10 +34,11 @@ products
 - brand_name (FK)
 - product_category_id (FK)
 - product_discontinued
+- product_discount_pct
 
 products_length
 - product_id (PK/FK)
-- product_length
+- product_length_in
 
 products_size
 - product_id (PK/FK)
