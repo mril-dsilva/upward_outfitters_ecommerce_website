@@ -82,6 +82,7 @@ stores
 inventory
 - product_id (CPK/FK)
 - location_id (CPK/FK(warehouses))
+- inventory_quantitiy
 
 shipments
 - shipment_id (PK)
