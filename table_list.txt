@@ -139,7 +139,7 @@ partners
 - partner_address_city
 - state_abbreviation (FK)
 - partner_address_zip_code
-- partner_phone_name
+- partner_phone_number
 - partner_email
 
 suppliers
