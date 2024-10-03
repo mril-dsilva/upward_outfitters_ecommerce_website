@@ -2,16 +2,16 @@ FIELD SPECIFICATIONS
 
 GENERAL ELEMENTS
 
-Field Name:           employee_id
+Field Name:           location_id
 Parent Table:         employee
 Alias(es):            _
 Specification Type:
-  Unique:  X
+  Unique:  _
   Generic: _
-  Replica: _
+  Replica: _X
 Source Specification: _
 Shared By:            _
-Description:          Autoincrementing unique identification number for each employee.
+Description:          stores the location of store where the employee works.
 
 
 PHYSICAL ELEMENTS
@@ -29,15 +29,15 @@ Character Support:
 LOGICAL ELEMENTS
 
 Key Type:      Non:        _
-               Primary:    X
-               Foreign:    _
+               Primary:    _
+               Foreign:    X
                Alternate:  _
 
 Key Structure: Simple:     X
                Composite:  _
 
-Uniqueness:    Non-unique: _
-               Unique:     X
+Uniqueness:    Non-unique: X
+               Unique:     _
 
 Null Support:  Nulls OK:   _
                No nulls:   X
@@ -51,8 +51,8 @@ Required Value:    No:     _
 Range of Values:   > 0
 
 Edit Rule:
-  Enter now, edits allowed:       _
-  Enter now, edits not allowed:   X
+  Enter now, edits allowed:       X
+  Enter now, edits not allowed:   _
   Enter later, edits allowed:     _
   Enter later, edits not allowed: _
   Not determined at this time:    _
