@@ -1,0 +1,60 @@
+FIELD SPECIFICATIONS
+
+GENERAL ELEMENTS
+
+Field Name:           product_id
+Parent Table:         inventory
+Alias(es):            _
+Specification Type:
+  Unique:  _
+  Generic: _
+  Replica: X
+Source Specification: _
+Shared By:            _
+Description:          Identification of the product the inventory entry is referring to.
+
+
+PHYSICAL ELEMENTS
+
+Data Type:            INT
+Length:               _
+Decimal Places:       _
+Character Support:
+  Letters (A-Z):      _
+  Numbers (0-9):      X
+  Keyboard (.,/$#%):  _
+  Special (©®™Σπ):    _
+
+
+LOGICAL ELEMENTS
+
+Key Type:      Non:        _
+               Primary:    _
+               Foreign:    X
+               Alternate:  _
+
+Key Structure: Simple:     _
+               Composite:  X  // with location id
+
+Uniqueness:    Non-unique: _
+               Unique:     _
+
+Null Support:  Nulls OK:   _
+               No nulls:   X
+
+Values Entered By: User:   _
+                   System: X
+
+Required Value:    No:     _
+                   Yes:    X
+
+Range of Values:   > 0
+
+Edit Rule:
+  Enter now, edits allowed:       _
+  Enter now, edits not allowed:   X
+  Enter later, edits allowed:     _
+  Enter later, edits not allowed: _
+  Not determined at this time:    _
+
+NOTES: _
