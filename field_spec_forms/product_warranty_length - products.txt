@@ -2,8 +2,8 @@ FIELD SPECIFICATIONS
 
 GENERAL ELEMENTS
 
-Field Name:           transaction_timestamp
-Parent Table:         transactions
+Field Name:           product_warranty_length
+Parent Table:         products
 Alias(es):            _
 Specification Type:
   Unique:  _
@@ -11,18 +11,18 @@ Specification Type:
   Replica: _
 Source Specification: _
 Shared By:            _
-Description:          The date and time when the transaction took place.
+Description:          The length of the product warranty in months.
 
 
 PHYSICAL ELEMENTS
 
-Data Type:            TIMESTAMP
+Data Type:            INT
 Length:               _
 Decimal Places:       _
 Character Support:
   Letters (A-Z):      _
   Numbers (0-9):      X
-  Keyboard (.,/$#%):  X
+  Keyboard (.,/$#%):  _
   Special (©®™Σπ):    _
 
 
@@ -42,19 +42,19 @@ Uniqueness:    Non-unique: X
 Null Support:  Nulls OK:   _
                No nulls:   X
 
-Values Entered By: User:   _
-                   System: X
+Values Entered By: User:   X
+                   System: _
 
 Required Value:    No:     _
                    Yes:    X
 
-Range of Values:   Valid timestamp format 'YYYY-MM-DD hh:mm:ss'
+Range of Values:   >=0
 
 Edit Rule:
-  Enter now, edits allowed:       _
-  Enter now, edits not allowed:   X
+  Enter now, edits allowed:       X
+  Enter now, edits not allowed:   _
   Enter later, edits allowed:     _
   Enter later, edits not allowed: _
   Not determined at this time:    _
 
-NOTES: System should automatically enter this value.
+NOTES: Please enter warranty period in months. If there is no warranty period please add 0.
