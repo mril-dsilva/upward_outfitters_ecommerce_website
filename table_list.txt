@@ -90,8 +90,8 @@ shipments
 
 internal_shipments
 - shipment_id (PK/FK)
-- location_id (FK)
-- location_id (FK)
+- location_id_origin (FK)
+- location_id_destination (FK)
 - shipment_quantity
 - product_id (FK)
 
