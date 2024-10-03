@@ -1,0 +1,60 @@
+FIELD SPECIFICATIONS
+
+GENERAL ELEMENTS
+
+Field Name:           shipment_quantity
+Parent Table:         internal_shipments
+Alias(es):            _
+Specification Type:
+  Unique:  _
+  Generic: X
+  Replica: _
+Source Specification: _
+Shared By:            _
+Description:          The quantity of a specific product being shipped in the internal shipment.
+
+
+PHYSICAL ELEMENTS
+
+Data Type:            INT
+Length:               _
+Decimal Places:       _
+Character Support:
+  Letters (A-Z):      _
+  Numbers (0-9):      X
+  Keyboard (.,/$#%):  _
+  Special (©®™Σπ):    _
+
+
+LOGICAL ELEMENTS
+
+Key Type:      Non:        X
+               Primary:    _
+               Foreign:    _
+               Alternate:  _
+
+Key Structure: Simple:     _
+               Composite:  _
+
+Uniqueness:    Non-unique: X
+               Unique:     _
+
+Null Support:  Nulls OK:   _
+               No nulls:   X
+
+Values Entered By: User:   X
+                   System: _
+
+Required Value:    No:     _
+                   Yes:    X
+
+Range of Values:   > 0
+
+Edit Rule:
+  Enter now, edits allowed:       X
+  Enter now, edits not allowed:   _
+  Enter later, edits allowed:     _
+  Enter later, edits not allowed: _
+  Not determined at this time:    _
+
+NOTES: This field stores the quantity of the product being shipped between internal locations (for example, between warehouses).

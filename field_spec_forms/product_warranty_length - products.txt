@@ -1,0 +1,60 @@
+FIELD SPECIFICATIONS
+
+GENERAL ELEMENTS
+
+Field Name:           transaction_timestamp
+Parent Table:         transactions
+Alias(es):            _
+Specification Type:
+  Unique:  _
+  Generic: X
+  Replica: _
+Source Specification: _
+Shared By:            _
+Description:          The date and time when the transaction took place.
+
+
+PHYSICAL ELEMENTS
+
+Data Type:            TIMESTAMP
+Length:               _
+Decimal Places:       _
+Character Support:
+  Letters (A-Z):      _
+  Numbers (0-9):      X
+  Keyboard (.,/$#%):  X
+  Special (©®™Σπ):    _
+
+
+LOGICAL ELEMENTS
+
+Key Type:      Non:        X
+               Primary:    _
+               Foreign:    _
+               Alternate:  _
+
+Key Structure: Simple:     _
+               Composite:  _
+
+Uniqueness:    Non-unique: X
+               Unique:     _
+
+Null Support:  Nulls OK:   _
+               No nulls:   X
+
+Values Entered By: User:   _
+                   System: X
+
+Required Value:    No:     _
+                   Yes:    X
+
+Range of Values:   Valid timestamp format 'YYYY-MM-DD hh:mm:ss'
+
+Edit Rule:
+  Enter now, edits allowed:       _
+  Enter now, edits not allowed:   X
+  Enter later, edits allowed:     _
+  Enter later, edits not allowed: _
+  Not determined at this time:    _
+
+NOTES: System should automatically enter this value.
