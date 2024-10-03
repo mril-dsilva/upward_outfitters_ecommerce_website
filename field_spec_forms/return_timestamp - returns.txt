@@ -2,8 +2,8 @@ FIELD SPECIFICATIONS
 
 GENERAL ELEMENTS
 
-Field Name:           shipment_quantity
-Parent Table:         internal_shipments
+Field Name:           return_timestamp
+Parent Table:         returns
 Alias(es):            _
 Specification Type:
   Unique:  _
@@ -11,18 +11,18 @@ Specification Type:
   Replica: _
 Source Specification: _
 Shared By:            _
-Description:          The quantity of a specific product being shipped in the internal shipment.
+Description:          The date and time when a product return was processed.
 
 
 PHYSICAL ELEMENTS
 
-Data Type:            INT
+Data Type:            TIMESTAMP
 Length:               _
 Decimal Places:       _
 Character Support:
   Letters (A-Z):      _
   Numbers (0-9):      X
-  Keyboard (.,/$#%):  _
+  Keyboard (.,/$#%):  X
   Special (©®™Σπ):    _
 
 
@@ -42,19 +42,19 @@ Uniqueness:    Non-unique: X
 Null Support:  Nulls OK:   _
                No nulls:   X
 
-Values Entered By: User:   X
-                   System: _
+Values Entered By: User:   _
+                   System: X
 
 Required Value:    No:     _
                    Yes:    X
 
-Range of Values:   > 0
+Range of Values:   Valid timestamp format 'YYYY-MM-DD hh:mm:ss'
 
 Edit Rule:
-  Enter now, edits allowed:       X
-  Enter now, edits not allowed:   _
+  Enter now, edits allowed:       _
+  Enter now, edits not allowed:   X
   Enter later, edits allowed:     _
   Enter later, edits not allowed: _
   Not determined at this time:    _
 
-NOTES: This field stores the quantity of the product being shipped between internal locations (for example, between warehouses).
+NOTES: System should automatically enter this value.
