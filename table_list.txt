@@ -117,6 +117,7 @@ returns
 
 preorders
 - transaction_id (PK/FK)
+
 transaction_products
 - transaction_id (CPK/FK)
 - product_id (CPK/FK)
