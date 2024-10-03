@@ -70,6 +70,7 @@ locations
 - location_address_city
 - state_abbreviation (FK)
 - location_address_zip_code
+- location_active
 
 warehouses
 - location_id (PK/FK)
