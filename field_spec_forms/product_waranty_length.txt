@@ -1,0 +1,60 @@
+FIELD SPECIFICATIONS
+
+GENERAL ELEMENTS
+
+Field Name:           product_warranty_length
+Parent Table:         product
+Alias(es):            _
+Specification Type:
+  Unique:  
+  Generic: _X
+  Replica: _
+Source Specification: _
+Shared By:            _
+Description:          _ stores the warranty time of a particular product in months.
+
+
+PHYSICAL ELEMENTS
+
+Data Type:            INT
+Length:               _
+Decimal Places:       _
+Character Support:
+  Letters (A-Z):      _
+  Numbers (0-9):      X
+  Keyboard (.,/$#%):  _
+  Special (©®™Σπ):    _
+
+
+LOGICAL ELEMENTS
+
+Key Type:      Non:        _X
+               Primary:    
+               Foreign:    _
+               Alternate:  _
+
+Key Structure: Simple:     X
+               Composite:  _
+
+Uniqueness:    Non-unique: _X
+               Unique:     
+
+Null Support:  Nulls OK:   _
+               No nulls:   X
+
+Values Entered By: User:   _X
+                   System: 
+
+Required Value:    No:     _
+                   Yes:    X
+
+Range of Values:   >= 0
+
+Edit Rule:
+  Enter now, edits allowed:       _X
+  Enter now, edits not allowed:   
+  Enter later, edits allowed:     _
+  Enter later, edits not allowed: _
+  Not determined at this time:    _
+
+NOTES: _
