@@ -2,8 +2,8 @@ FIELD SPECIFICATIONS
 
 GENERAL ELEMENTS
 
-Field Name:           return_timestamp
-Parent Table:         returns
+Field Name:           transaction_timestamp
+Parent Table:         transactions
 Alias(es):            _
 Specification Type:
   Unique:  _
@@ -11,7 +11,7 @@ Specification Type:
   Replica: _
 Source Specification: _
 Shared By:            _
-Description:          The date and time when a product return was processed.
+Description:          The date and time when the transaction took place.
 
 
 PHYSICAL ELEMENTS
