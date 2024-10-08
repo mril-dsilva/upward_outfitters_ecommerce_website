@@ -7,17 +7,17 @@ Tables:
 - product_categories (Validation): stores the names of all of the different categories of products that are in the database system, constraining the category field in products.
 - product_brands (Validation): stores the names of all of the different brands of products that are in the database system, constraining the brand field in products.
 - product_sizes (Validation): stores all of the different letter sizes that an article of clothing can take on, constraining what size can be stored in product_sizes.
-- locations (Data): stores all of the basic data for the physical locations. Also has a single entry for the online store. Is used to track which of Upward Outfitters' physical locations is being referenced in a shipment or transaction
-- warehouses(subset table):stores all the warehouses and their locations
-- stores(subset table): stores all the stores and their locations
-- inventory(data table): stores the product which are in stock and their locations
-- shipments(Data table): stores all the shipments and their tracking number with dispatch time 
-- internal_shipments(subset table): stores the internal shipment details like which two locations,the prduct and the quantity 
-- external_shipments(subset table): stores the shipment to customers with their details like address
-- transactions(data table):stores all the transactions like selling products and buying more stock
+- locations (Data): stores all of the basic data for the physical locations. Also has a single entry for the online store. Is used to track which of Upward Outfitters' physical locations is being referenced in a shipment or transaction.
+- warehouses(subset table):stores all the warehouses and their locations.
+- stores(subset table): stores all the stores and their locations.
+- inventory(data table): stores the product which are in stock and their locations.
+- shipments(Data table): stores all the shipments and their tracking number with dispatch time.
+- internal_shipments(subset table): stores the internal shipment details like which two locations,the prduct and the quantity. 
+- external_shipments(subset table): stores the shipment to customers with their details like address.
+- transactions(data table):stores all the transactions like selling products and buying more stock.
 - preorders (Subset): Stores preoders made by customers.
 - transaction_products (Linking): Stores the items that is related to each transactions.
-- return_products (Data): Stores returns made by customers, with an optional field that allows for specifying a replacement product (i.e. an exchange)
+- return_products (Data): Stores returns made by customers, with an optional field that allows for specifying a replacement product (i.e. an exchange).
 - partners (Data): Stores information about partners. A partner is either a supplier or a customer.
 - suppliers (Subset): Stores which partners are suppliers.
 - customers (Subset): Stores which parterns are customers.
