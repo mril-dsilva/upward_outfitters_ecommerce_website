@@ -1,7 +1,7 @@
 Tables:
 - products (Data): stores the basic data for all of the products in the database system.
 - product_lengths (Subset): stores the length of products with the length variant trait.
-- product_sizes (Subset): stores the size of products with the length variant trait.
+- product_sizes (Subset): stores the size of products with the sizes variant trait.
 - product_shoe_size (Subset): stores the size of shoe products.
 - product_capacity (Subset): stores the capacity of products with the capacity variant trait.
 - product_categories (Validation): stores the names of all of the different categories of products that are in the database system, constraining the category field in products.
@@ -12,9 +12,9 @@ Tables:
 - stores (Subset): stores all the stores and their locations.
 - inventory (Data): stores the product which are in stock and their locations.
 - shipments(Data): stores all the shipments and their tracking number with dispatch time.
-- internal_shipments (Subset): stores the internal shipment details like which two locations,the prduct and the quantity. 
+- internal_shipments (Subset): stores the internal shipment details like which two locations, the product, and the quantity. 
 - external_shipments (Subset): stores the shipment to customers with their details like address.
-- transactions (Data):stores all the transactions like selling products and buying more stock.
+- transactions (Data): stores all the transactions like selling products and buying more stock.
 - preorders (Subset): Stores preoders made by customers.
 - transaction_products (Linking): Stores the items that is related to each transactions.
 - return_products (Data): Stores returns made by customers, with an optional field that allows for specifying a replacement product (i.e. an exchange).
