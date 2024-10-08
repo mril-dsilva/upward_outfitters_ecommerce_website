@@ -15,10 +15,9 @@ Tables:
 - internal_shipments(subset table): stores the internal shipment details like which two locations,the prduct and the quantity 
 - external_shipments(subset table): stores the shipment to customers with their details like address
 - transactions(data table):stores all the transactions like selling products and buying more stock
-- returns (Subset): Stores returns made by customers.
 - preorders (Subset): Stores preoders made by customers.
 - transaction_products (Linking): Stores the items that is related to each transactions.
-- exchanges (Data): Stores exchanges made by customers.
+- return_products (Data): Stores returns made by customers, with an optional field that allows for specifying a replacement product (i.e. an exchange)
 - partners (Data): Stores information about partners. A partner is either a supplier or a customer.
 - suppliers (Subset): Stores which partners are suppliers.
 - customers (Subset): Stores which parterns are customers.
@@ -115,10 +114,6 @@ transactions
 - employee_id (FK)
 - store_id (FK)
 
-returns
-- transaction_id (PK/FK)
-- return_timestamp
-
 preorders
 - transaction_id (PK/FK)
 
@@ -128,12 +123,11 @@ transaction_products
 - transaction_product_quantity
 - transaction_product_price
 
-exchanges
-- exchange_id (PK)
-- transaction_id (FK)
-- product_id (FK)
-- exchange_product_quantity
-- exchange_timestamp
+return_products
+- transaction_id (CPK/FK)
+- product_id (CPK/FK)
+- replacement_product_id (FK)
+- return_timestamp
 
 partners
 - partner_id (PK)
