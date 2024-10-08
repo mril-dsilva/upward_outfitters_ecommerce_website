@@ -8,13 +8,13 @@ Tables:
 - product_brands (Validation): stores the names of all of the different brands of products that are in the database system, constraining the brand field in products.
 - product_sizes (Validation): stores all of the different letter sizes that an article of clothing can take on, constraining what size can be stored in product_sizes.
 - locations (Data): stores all of the basic data for the physical locations. Also has a single entry for the online store. Is used to track which of Upward Outfitters' physical locations is being referenced in a shipment or transaction.
-- warehouses(subset table):stores all the warehouses and their locations.
-- stores(subset table): stores all the stores and their locations.
-- inventory(data table): stores the product which are in stock and their locations.
-- shipments(Data table): stores all the shipments and their tracking number with dispatch time.
-- internal_shipments(subset table): stores the internal shipment details like which two locations,the prduct and the quantity. 
-- external_shipments(subset table): stores the shipment to customers with their details like address.
-- transactions(data table):stores all the transactions like selling products and buying more stock.
+- warehouses (Subset):stores all the warehouses and their locations.
+- stores (Subset): stores all the stores and their locations.
+- inventory (Data): stores the product which are in stock and their locations.
+- shipments(Data): stores all the shipments and their tracking number with dispatch time.
+- internal_shipments (Subset): stores the internal shipment details like which two locations,the prduct and the quantity. 
+- external_shipments (Subset): stores the shipment to customers with their details like address.
+- transactions (Data):stores all the transactions like selling products and buying more stock.
 - preorders (Subset): Stores preoders made by customers.
 - transaction_products (Linking): Stores the items that is related to each transactions.
 - return_products (Data): Stores returns made by customers, with an optional field that allows for specifying a replacement product (i.e. an exchange).
@@ -23,6 +23,7 @@ Tables:
 - customers (Subset): Stores which parterns are customers.
 - employees (Data): Stores information about employees.
 - states (Validation): Stores names and abbreviations of US states.
+- addresses (Data): Stores the details of a mailing address.
 
 products
 - product_id (PK)
@@ -64,11 +65,7 @@ product_sizes
 
 locations
 - location_id (PK)
-- location_address_line_1
-- location_address_line_2
-- location_address_city
-- state_abbreviation (FK)
-- location_address_zip_code
+- address_id (FK)
 - location_active
 
 warehouses
@@ -100,11 +97,7 @@ external_shipments
 - shipment_id (PK/FK)
 - location_id (FK)
 - transaction_id (FK)
-- shipment_address_line_1
-- shipment_address_line_2
-- shipment_address_city
-- state_abbreviation (FK)
-- shipment_address_zip_code
+- address_id (FK)
 
 transactions
 - transaction_id (PK)
@@ -132,11 +125,7 @@ return_products
 partners
 - partner_id (PK)
 - partner_name
-- partner_address_line_1
-- partner_address_line_2
-- partner_address_city
-- state_abbreviation (FK)
-- partner_address_zip_code
+- address_id (FK)
 - partner_phone_number
 - partner_email
 
