@@ -1,0 +1,55 @@
+BUSINESS RULE SPECIFICATIONS
+
+RULE INFORMATION
+
+Statement: Our policy states that a return timestamp must be after shipping timestamp in time.
+
+Constraint: return_products.return_timestamp < shipments.shipment_dispatch_timestamp
+
+Type:     Database Oriented:     Y 
+          Application Oriented   _ 
+
+Category: Field Specific:        Y 
+          Relationship Specific: _ 
+
+Test On:  Insert:                Y 
+          Delete:                _ 
+          Update:                _
+
+
+STRUCTURES AFFECTED
+
+Field Names: return_timestamp
+
+Table Names: return_products
+
+
+FIELD ELEMENTS AFFECTED
+
+Physical Elements: Data Type:           _ 
+                   Length:              _ 
+                   Character Support:   _ 
+
+Logical Elements:  Key Type:            _ 
+                   Key Structure:       _ 
+                   Uniqueness:          _ 
+                   Null Support:        _ 
+                   Values Entered By:   _ 
+                   Range of Values:     Y 
+                   Edit Rule:           _ 
+
+
+RELATIONSHIP CHARACTERISTICS AFFECTED
+
+    Deletion rule:              _
+    Type of participation:      _
+    Degree of participation:    _
+
+    
+ACTION TAKEN
+
+Add constraint to the return_products.return_timestamp as mentioned above 
+
+
+NOTES: _
+
