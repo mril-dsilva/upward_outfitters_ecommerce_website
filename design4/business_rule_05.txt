@@ -2,26 +2,26 @@ BUSINESS RULE SPECIFICATIONS
 
 RULE INFORMATION
 
-Statement:  _ 
+Statement:  A shipment record must be created for a product picked up from the store, to ensure that it was picked up 
 
-Constraint: _ 
+Constraint: Application oriented behavior that will create a shipment (only in the shipments table, not one of the subsets) when a customer picks up their item.
 
 Type:     Database Oriented:     _ 
-          Application Oriented   _ 
+          Application Oriented   X 
 
 Category: Field Specific:        _ 
-          Relationship Specific: _ 
+          Relationship Specific: X 
 
 Test On:  Insert:                _ 
           Delete:                _ 
-          Update:                _
+          Update:                X
 
 
 STRUCTURES AFFECTED
 
-Field Names: _ 
+Field Names: shipment_id 
 
-Table Names: _
+Table Names: shipments, transactions
 
 
 FIELD ELEMENTS AFFECTED
@@ -48,7 +48,7 @@ RELATIONSHIP CHARACTERISTICS AFFECTED
     
 ACTION TAKEN
 
-_ 
+Added application level trigger.
 
 
 NOTES: _
