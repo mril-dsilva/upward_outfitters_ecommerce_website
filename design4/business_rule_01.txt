@@ -2,26 +2,26 @@ BUSINESS RULE SPECIFICATIONS
 
 RULE INFORMATION
 
-Statement:  _ 
+Statement:  When a product is discontinued, it should no longer be allowed to place an order for more of that item from the supplier. 
 
-Constraint: _ 
+Constraint: if product_discontinued = true, transaction.partner_id != product.partner_id
 
-Type:     Database Oriented:     _ 
+Type:     Database Oriented:     Y 
           Application Oriented   _ 
 
 Category: Field Specific:        _ 
-          Relationship Specific: _ 
+          Relationship Specific: Y 
 
-Test On:  Insert:                _ 
+Test On:  Insert:                Y 
           Delete:                _ 
           Update:                _
 
 
 STRUCTURES AFFECTED
 
-Field Names: _ 
+Field Names: product_discontinued, transactions.partner_id, product.partner_id 
 
-Table Names: _
+Table Names: transactions, products, partners
 
 
 FIELD ELEMENTS AFFECTED
@@ -42,13 +42,13 @@ Logical Elements:  Key Type:            _
 RELATIONSHIP CHARACTERISTICS AFFECTED
 
     Deletion rule:              _
-    Type of participation:      _
+    Type of participation:      X
     Degree of participation:    _
 
     
 ACTION TAKEN
 
-_ 
+Created trigger on transaction insertion.
 
 
 NOTES: _
