@@ -2,26 +2,26 @@ BUSINESS RULE SPECIFICATIONS
 
 RULE INFORMATION
 
-Statement:  _ 
+Statement:  A product should only be shipped after it is purchased. 
 
-Constraint: _ 
+Constraint: transactions.transaction_timestamp less than or equal to its associated shipments.shipping_timestamp
 
-Type:     Database Oriented:     _ 
+Type:     Database Oriented:     X 
           Application Oriented   _ 
 
-Category: Field Specific:        _ 
+Category: Field Specific:        X 
           Relationship Specific: _ 
 
-Test On:  Insert:                _ 
+Test On:  Insert:                X 
           Delete:                _ 
-          Update:                _
+          Update:                X
 
 
 STRUCTURES AFFECTED
 
-Field Names: _ 
+Field Names: transaction_timestamp, shipment_timestamp 
 
-Table Names: _
+Table Names: transactions, shipments
 
 
 FIELD ELEMENTS AFFECTED
@@ -35,7 +35,7 @@ Logical Elements:  Key Type:            _
                    Uniqueness:          _ 
                    Null Support:        _ 
                    Values Entered By:   _ 
-                   Range of Values:     _ 
+                   Range of Values:     X 
                    Edit Rule:           _ 
 
 
@@ -48,7 +48,7 @@ RELATIONSHIP CHARACTERISTICS AFFECTED
     
 ACTION TAKEN
 
-_ 
+Added trigger before shipments creation and edit.
 
 
 NOTES: _
