@@ -4,7 +4,7 @@ RULE INFORMATION
 
 Statement: Our policy states that a return timestamp must be after shipping timestamp in time.
 
-Constraint: return_products.return_timestamp < shipments.shipment_dispatch_timestamp
+Constraint: return_products.return_timestamp > shipments.shipment_dispatch_timestamp
 
 Type:     Database Oriented:     Y 
           Application Oriented   _ 
