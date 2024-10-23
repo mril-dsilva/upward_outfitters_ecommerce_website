@@ -4,7 +4,7 @@ RULE INFORMATION
 
 Statement: Our policy states that the warranty period begins when the product is shipped.  
 
-Constraint: warranty_products.warranty_claim_timestamp < (shipments.shipment_dispatch_timestamp + products.product_warranty_length)
+Constraint: warranty_products.warranty_claim_timestamp <= (shipments.shipment_dispatch_timestamp + products.product_warranty_length)
 
 Type:     Database Oriented:     Y 
           Application Oriented   _ 
