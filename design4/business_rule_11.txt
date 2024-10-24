@@ -48,7 +48,7 @@ RELATIONSHIP CHARACTERISTICS AFFECTED
     
 ACTION TAKEN
 
-Add constraint to the return_products.return_timestamp as mentioned above 
+Add a check trigger as mentioned in the constraint above.
 
 
 NOTES: _
