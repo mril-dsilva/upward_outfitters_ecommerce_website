@@ -48,7 +48,7 @@ INSERT INTO products (product_name, product_sale_price, product_description, pro
 INSERT INTO products (product_name, product_sale_price, product_description, product_brand_id, product_category_id) VALUES ('Quickdraw Set (24cm)', 55.0, 'Lightweight quickdraw set for sport climbing', 1, 1);
 
 
-        -- Adding product subtable info (lengths, sizes, shoe sizes, capacity)
+        -- Adding product subtable info 
     INSERT INTO products_length (product_id, product_length) VALUES (1, '60m');
     INSERT INTO products_length (product_id, product_length) VALUES (2, '70m');
     INSERT INTO products_length (product_id, product_length) VALUES (3, '80m');
