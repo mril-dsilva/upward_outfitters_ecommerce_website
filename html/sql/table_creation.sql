@@ -120,6 +120,13 @@ CREATE TABLE locations (
     FOREIGN KEY (address_id) REFERENCES addresses(address_id)
 );
 
+-- Warehouses Table
+CREATE TABLE warehouses (
+    location_id INT PRIMARY KEY,
+    warehouse_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
+);
+
 -- Stores Table
 CREATE TABLE stores (
     location_id INT PRIMARY KEY,
@@ -137,9 +144,91 @@ CREATE TABLE employees (
 
 -- Shipments Table
 CREATE TABLE shipments (
-    shipment_id INT PRIMARY KEY,
+    shipment_id INT AUTO_INCREMENT PRIMARY KEY,
     shipment_dispatch_timestamp TIMESTAMP NOT NULL,
     shipment_tracking_number VARCHAR(50)
 );
+
+
+-- Transactions Table
+CREATE TABLE transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_timestamp TIMESTAMP NOT NULL,
+    partner_id INT,
+    shipment_id INT,
+    employee_id INT,
+    location_id INT,
+    FOREIGN KEY (partner_id) REFERENCES partners(partner_id),
+    FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id),
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
+);
+
+-- Internal Shipments Table
+CREATE TABLE internal_shipments (
+    shipment_id INT PRIMARY KEY,
+    location_id_origin INT,
+    location_id_destination INT,
+    shipment_quantity INT NOT NULL,
+    product_id INT,
+    shipment_received_timestamp TIMESTAMP,
+    FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id),
+    FOREIGN KEY (location_id_origin) REFERENCES locations(location_id),
+    FOREIGN KEY (location_id_destination) REFERENCES locations(location_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- External Shipments Table
+CREATE TABLE external_shipments (
+    shipment_id INT PRIMARY KEY,
+    location_id INT,
+    transaction_id INT,
+    address_id INT,
+    FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id),
+    FOREIGN KEY (location_id) REFERENCES locations(location_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (address_id) REFERENCES addresses(address_id)
+);
+
+-- Preorders Table
+CREATE TABLE preorders (
+    transaction_id INT PRIMARY KEY,
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id)
+);
+
+-- Transaction Products Table
+CREATE TABLE transaction_products (
+    transaction_id INT,
+    product_id INT,
+    transaction_product_quantity INT NOT NULL,
+    transaction_product_price DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (transaction_id, product_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Return Products Table
+CREATE TABLE return_products (
+    transaction_id INT,
+    product_id INT,
+    replacement_product_id INT,
+    return_timestamp TIMESTAMP NOT NULL,
+    PRIMARY KEY (transaction_id, product_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (replacement_product_id) REFERENCES products(product_id)
+);
+
+-- Warranty Products Table
+CREATE TABLE warranty_products (
+    transaction_id INT,
+    product_id INT,
+    warranty_claim_description TEXT,
+    warranty_claim_timestamp TIMESTAMP NOT NULL,
+    PRIMARY KEY (transaction_id, product_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
 
 
