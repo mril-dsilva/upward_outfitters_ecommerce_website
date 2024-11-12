@@ -230,5 +230,14 @@ CREATE TABLE warranty_products (
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
+-- Inventory Table
+CREATE TABLE inventory (
+    location_id INT,
+    product_id INT,
+    inventory_quantity INT NOT NULL,
+    PRIMARY KEY (location_id, product_id),
+    FOREIGN KEY (location_id) REFERENCES locations(location_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
 
 
