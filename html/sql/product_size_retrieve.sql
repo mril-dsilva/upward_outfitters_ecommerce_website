@@ -1,2 +1,2 @@
-SELECT product_size,
+SELECT product_size
   FROM product_sizes
