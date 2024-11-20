@@ -105,9 +105,8 @@ CREATE TABLE product_sizes (
 
 -- Product Sizes Table
 CREATE TABLE products_size (
-    product_id INT,
+    product_id INT PRIMARY KEY,
     product_size VARCHAR(50),
-    PRIMARY KEY (product_id, product_size),
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (product_size) REFERENCES product_sizes(product_size)
 );
