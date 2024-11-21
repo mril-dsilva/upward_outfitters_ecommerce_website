@@ -35,13 +35,13 @@ CREATE TABLE partners (
 -- Suppliers Table
 CREATE TABLE suppliers (
     partner_id INT PRIMARY KEY,
-    FOREIGN KEY (partner_id) REFERENCES partners(partner_id)
+    FOREIGN KEY (partner_id) REFERENCES partners(partner_id) ON DELETE CASCADE
 );
 
 -- Customers Table
 CREATE TABLE customers (
     partner_id INT PRIMARY KEY,
-    FOREIGN KEY (partner_id) REFERENCES partners(partner_id)
+    FOREIGN KEY (partner_id) REFERENCES partners(partner_id) ON DELETE CASCADE
 );
 
 -- Product Categories Table
