@@ -9,7 +9,7 @@ BEGIN
     
     -- adding the id of this partner to the suppliers (subset of partners) table as well.
     INSERT INTO suppliers (partner_id)
-    VALUES (p_partner_id);
+    VALUES (p_id);
 
 END$$
 
