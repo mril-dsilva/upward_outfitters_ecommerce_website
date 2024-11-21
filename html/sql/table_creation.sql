@@ -185,14 +185,14 @@ CREATE TABLE external_shipments (
     address_id INT,
     FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id),
     FOREIGN KEY (location_id) REFERENCES locations(location_id),
-    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
     FOREIGN KEY (address_id) REFERENCES addresses(address_id)
 );
 
 -- Preorders Table
 CREATE TABLE preorders (
     transaction_id INT PRIMARY KEY,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id)
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
 );
 
 -- Transaction Products Table
@@ -202,7 +202,7 @@ CREATE TABLE transaction_products (
     transaction_product_quantity INT NOT NULL,
     transaction_product_price DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY (transaction_id, product_id),
-    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
@@ -213,7 +213,7 @@ CREATE TABLE return_products (
     replacement_product_id INT,
     return_timestamp TIMESTAMP NOT NULL,
     PRIMARY KEY (transaction_id, product_id),
-    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (replacement_product_id) REFERENCES products(product_id)
 );
@@ -225,7 +225,7 @@ CREATE TABLE warranty_products (
     warranty_claim_description TEXT,
     warranty_claim_timestamp TIMESTAMP NOT NULL,
     PRIMARY KEY (transaction_id, product_id),
-    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
