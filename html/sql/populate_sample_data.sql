@@ -74,3 +74,12 @@ INSERT INTO products (product_name, product_sale_price, product_description, pro
     (4, 'L'),
     (5, 'M'),
     (5, 'L');
+
+INSERT INTO transactions (transaction_timestamp, partner_id, shipment_id, location_id) VALUES
+(DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY), 1, NULL, NULL),
+(DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 6 DAY), 2, NULL, NULL);
+
+INSERT INTO transaction_products (transaction_id, product_id, transaction_product_quantity, transaction_product_price) VALUES
+(1, 1, 4, 150.0),
+(1, 4, 2, 80.0),
+(2, 5, 1, 100.0);
