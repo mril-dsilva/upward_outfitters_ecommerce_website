@@ -12,6 +12,15 @@
   $dbname = "upward_outfitters";
   $queries_path = "./sql/";
 
+  // -- Handling session -------------------------------------------------------
+  session_start();  // need to use session to keep track of
+                    // which products the user chose to add to the transaction
+  // Set default for session variables if not set
+  if (!array_key_exists("new_transaction_products", $_SESSION)) {
+    $_SESSION["new_transaction_products"] = [];
+  }
+
+
   // ---- Select from transactions tables ---------------------------------------
   $retrieve_query = file_get_contents($queries_path . 'transaction_retrieve.sql');
   $conn = create_connection($config, $dbname);
@@ -25,6 +34,38 @@
   $transaction_fields = $transactions_retrieved->fetch_fields();
 
   // ---- Handling form submissions --------------------------------------------
+  // Add new product entry to the new transaction
+  if (array_key_exists("add_product_to_new_transaction", $_POST)) {
+    $product_id = $_POST["new_transaction_product_id"];
+    $conn = create_connection($config, $dbname);
+    $prepared_query = $conn->prepare("SELECT product_name, product_sale_price FROM products WHERE product_id = ?");
+    $prepared_query->bind_param("i", $product_id);
+    if (!$prepared_query->execute()) {
+        echo "Query execution failed!\n";
+        exit();
+    }
+    $query_result = $prepared_query->get_result()->fetch_all()[0];
+
+    if (!$_POST["new_transaction_product_quantity"]) {
+      $product_quantity = 1;
+    } else {
+      $product_quantity = $_POST["new_transaction_product_quantity"];
+    }
+    if (!$_POST["new_transaction_product_price"]) {
+      $product_price = $query_result[1];
+    } else {
+      $product_price = $_POST["new_transaction_product_price"];
+    }
+    $entry = array(
+      "name"=>$query_result[0],
+      "id"=>$product_id,
+      "quantity"=>$product_quantity,
+      "price"=>$product_price
+    );
+    array_push($_SESSION["new_transaction_products"], $entry);
+    redirect_to_get_request();
+  }
+
   // Create transaction
   if (array_key_exists("create_transaction", $_POST)) {
     $create_statement = file_get_contents($queries_path . 'transaction_create_now.sql');
@@ -44,12 +85,36 @@
       $new_transaction_location_id
     );
     $create_result = $prepared_create_statement->execute();
-
-    $conn->close();
     if (!$create_result){
-      echo "Create statement failed!\n";  
+      echo "Create statement failed!\n";
       exit();
     }
+
+    $transaction_id = $conn->insert_id;  // id of the transaction we just add
+    $create_statement = file_get_contents($queries_path . 'transaction_products_create.sql');
+    $prepared_create_statement = $conn->prepare($create_statement);
+    $prepared_create_statement->bind_param(
+      "iiid",
+      $transaction_id,
+      $product_id,
+      $product_quantity,
+      $product_price
+    );
+
+    foreach ($_SESSION["new_transaction_products"] as $entry) {
+      $product_id = $entry["id"];
+      $product_quantity = $entry["quantity"];
+      $product_price = $entry["price"];
+      $prepared_create_statement->execute();
+      if (!$create_result){
+        echo "Create statement failed!\n";
+        exit();
+      }
+    }
+    $conn->close();
+    // Clear selected products after transaction create
+    $_SESSION["new_transaction_products"] = [];
+
     redirect_to_get_request();
   }
 
@@ -107,6 +172,13 @@
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
+  <?php function create_options($result_rows) { ?>
+      <?php for ($i = 0; $i < count($result_rows); $i++) { ?>
+        <option value=<?= $result_rows[$i][0] ?>>
+          <?= $result_rows[$i][1] ?>
+        </option>
+      <?php } ?>
+  <?php } ?>
   <h1>Transactions</h1>
   <!-- Transactions table -->
   <form method="POST">
@@ -146,6 +218,53 @@
   </form>
 
   <h2> Add transaction </h2>
+  <h3> Products in the new transaction </h3>
+  <?php if (!$_SESSION["new_transaction_products"]) { ?>
+    <p>No products in the new transaction</p>
+  <?php } else { ?>
+    <ul>
+      <?php foreach ($_SESSION['new_transaction_products'] as $entry) { ?>
+         <li> <?= $entry["name"] . " x " . $entry["quantity"] . ", price = $" . $entry["price"] ?></li>
+       <?php } ?>
+    </ul>
+  <?php } ?>
+
+  <form method="POST">
+    <label for="new_transaction_product_id">Select product</label>
+    <select name="new_transaction_product_id">
+      <?php 
+          $retrieve_query = file_get_contents($queries_path . 'product_retrieve.sql');
+          $conn = create_connection($config, $dbname);
+          $prepared_query = $conn->prepare($retrieve_query);
+          $category = -1;  // do not filter category
+          $prepared_query->bind_param('i', $category);
+          if (!$prepared_query->execute()) {
+            echo "Retrieve products failed to execute!\n";
+            exit();
+          }
+          $products_retrieved = $prepared_query->get_result();
+          $conn->close();
+
+          if (!$products_retrieved) {
+              echo "Retrieve statement failed!\n";
+              exit();
+          }
+          $result_rows = $products_retrieved->fetch_all();
+        ?>
+        <?php for ($i = 0; $i < count($result_rows); $i++) { ?>
+          <option value=<?= $result_rows[$i][0] ?>>
+            <?= $result_rows[$i][1] ?>
+          </option>
+        <?php } ?>
+    </select>
+    <label for="new_transaction_product_quantity">Enter quantity for product</label>
+    <input type="number" name="new_transaction_product_quantity" value=1 min=0/>
+    <label for="new_transaction_product_price">Enter price for product</label>
+    <input type="number" name="new_transaction_product_price" min=0 step=0.01 />
+    <button type="submit" name="add_product_to_new_transaction">
+      Add product to transaction
+    </button>
+  </form>
   <form method="POST">
     <label for="new_transaction_partner_id">Partner</label>
     <select name="new_transaction_partner_id">
@@ -153,18 +272,13 @@
           $conn = create_connection($config, $dbname);
           $retrieve_query = file_get_contents($queries_path . 'partner_retrieve.sql');
           $partners_retrieved = $conn->query($retrieve_query);
-          $conn -> close();
+          $conn->close();
           if (!$partners_retrieved) {
               echo "Retrieve statement failed!\n";
               exit();
           }
-          $partner_rows = $partners_retrieved->fetch_all();
+          create_options($partners_retrieved->fetch_all());
         ?>
-        <?php for ($i = 0; $i < $partners_retrieved->num_rows; $i++) { ?>
-          <option value=<?= $partner_rows[$i][0] ?>>
-            <?= $partner_rows[$i][1] ?>
-          </option>
-        <?php } ?>
     </select>
     <input type="submit" name="create_transaction" value="Add transaction" />
   </form>
