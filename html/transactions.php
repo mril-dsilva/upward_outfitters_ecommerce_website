@@ -8,7 +8,7 @@
   mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
   // Set config for user
-  $config = parse_ini_file('./mysql.ini');
+  $config = parse_ini_file('../../mysql.ini');
   $dbname = "upward_outfitters";
   $queries_path = "./sql/";
 

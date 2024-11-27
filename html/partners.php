@@ -8,7 +8,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $sql_location = "./sql/"; 
 
-$config = parse_ini_file('/home/mrildsilva/mysql.ini');
+$config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
     $config['mysqli.default_host'],
@@ -101,7 +101,7 @@ function delete_partners($conn) {
 
 function fetch_partners($conn) {
     global $sql_location;
-    $retrieve_query = file_get_contents($sql_location . 'partner_retreive.sql');
+    $retrieve_query = file_get_contents($sql_location . 'partner_retrieve.sql');
     $result = $conn->query($retrieve_query);
     return $result->fetch_all(MYSQLI_ASSOC);
 }

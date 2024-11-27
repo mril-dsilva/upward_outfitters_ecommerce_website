@@ -10,7 +10,7 @@
     $sql_location = './sql/';
 
     # Create new connection, specifying the database we care about
-    $config = parse_ini_file('/home/jackson/mysql.ini');
+    $config = parse_ini_file('../../mysql.ini');
     $dbname = 'upward_outfitters';
     $conn = new mysqli(
             $config['mysqli.default_host'],
