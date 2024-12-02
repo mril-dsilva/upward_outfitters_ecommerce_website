@@ -168,7 +168,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Manage Instruments</title>
+  <title>Transactions list</title>
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
