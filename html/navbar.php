@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require 'check_authentication.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
