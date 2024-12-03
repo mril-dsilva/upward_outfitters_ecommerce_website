@@ -57,6 +57,9 @@
 <html>
     <link rel="stylesheet" href="basic.css">
     <body>
+        <!-- Include Navigation Bar  -->
+        <?php require 'navbar.php'; ?>
+        
         <h1>Inventory</h1>
 
         <form action="inventory.php" method="GET">

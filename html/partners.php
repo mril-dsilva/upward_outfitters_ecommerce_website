@@ -113,6 +113,9 @@ $partners = fetch_partners($conn);
     <title>Manage Partners</title>
 </head>
 <body>
+    <!-- Include Navigation Bar  -->
+    <?php require 'navbar.php'; ?>
+
     <h1>Partners</h1>
 
     <form method="POST">

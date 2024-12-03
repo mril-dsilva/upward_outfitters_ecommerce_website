@@ -172,6 +172,9 @@
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
+  <!-- Include Navigation Bar  -->
+  <?php require 'navbar.php'; ?>
+
   <?php function create_options($result_rows) { ?>
       <?php for ($i = 0; $i < count($result_rows); $i++) { ?>
         <option value=<?= $result_rows[$i][0] ?>>
