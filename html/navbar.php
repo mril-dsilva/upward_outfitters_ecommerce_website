@@ -59,3 +59,21 @@
 
 </body>
 </html>
+<?php
+// Function to retrieve categories from the database
+function getCategories($conn) {
+    $sql = "SELECT * FROM product_categories";
+    $result = $conn->query($sql);
+ 
+    $categories = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = [
+                'id' => $row['product_category_id'],
+                'name' => $row['product_category_name'],
+            ];
+        }
+    }
+    return $categories;
+}
+?>
