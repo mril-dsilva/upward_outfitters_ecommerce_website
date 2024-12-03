@@ -43,7 +43,7 @@
         <h1>Login</h1>
         <form method="POST">
             <label for="l_username">Username</label>
-            <input type="password" name="l_username" required/>
+            <input type="text" name="l_username" required/>
 
             <label for="l_password">Password</label>
             <input type="password" name="l_password" required/>
@@ -93,6 +93,12 @@ function login($conn, $param_username, $param_password){
 
     $sel_username = $login_queries[0][0];
     $sel_role = $login_queries[0][1];
+
+    # Redirect here if the select didn't return anything.
+    if ($sel_username == null){
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+        exit();
+    }
 
     $_SESSION["username"] = $sel_username; 
     $_SESSION["user_role"] = $sel_role;
