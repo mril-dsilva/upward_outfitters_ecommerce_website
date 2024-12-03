@@ -13,20 +13,68 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//  Retrieve the Product Data
+//Retrieve the Product Data
 $products = getProducts($conn); 
-// Display Products
+
+//  Display Products
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optional: Add a CSS file to style the page -->
+    <title>Product Catalog</title> 
+    <style>
+        /* styling for the navigation bar */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            padding: 14px 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+        
+    </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+        <li><a href="home.php">Home</a></li>    
+        <?php
+            if (isset($_SESSION['user_role'])) {
+                if ($_SESSION['user_role'] == 1) { // Employee
+                    echo '<li><a href="inventory.php">Inventory</a></li>';
+                    echo '<li><a href="partners.php">Partners</a></li>';
+                    echo '<li><a href="transactions.php">Transactions</a></li>';
+
+                }
+                if ($_SESSION['user_role'] == 0) { // Customer
+                    echo '<li><a href="cart.php">Cart <img src="cart_icon.png" alt="Cart Icon" style="width:20px; height:20px; filter: invert(1);"></a></li>';
+                }
+            }
+            ?>
+            <?php
+            // Get categories from the database
+            $categories = getCategories($conn);
+            foreach ($categories as $category) {
+                echo '<li><a href="catalog.php?category=' . htmlspecialchars($category['id']) . '">' . htmlspecialchars($category['name']) . '</a></li>';
+            }
+            ?>
+            <li><a href="logout.php"><img src="log_out_icon.png" alt="Log Out Icon" style="width:20px; height:20px;filter: invert(1);"></a></li>
+        </ul>
+    </nav>
+
     <h1>Product Catalog</h1>
 
     <!--  Product Category Filter -->
@@ -36,7 +84,6 @@ $products = getProducts($conn);
             <option value="">All Categories</option>
             <?php
             // Get categories from the database
-            $categories = getCategories($conn); // This function will now use the database connection.
             foreach ($categories as $category) {
                 echo '<option value="' . htmlspecialchars($category['id']) . '">' . htmlspecialchars($category['name']) . '</option>';
             }
@@ -45,7 +92,7 @@ $products = getProducts($conn);
         <button type="submit">Filter</button>
     </form>
 
-    <!--  Display Products in a Table with Add to Cart Option -->
+    <!-- Display Products in a Table with Add to Cart Option -->
     <form method="POST" action="cart.php">
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
@@ -54,8 +101,8 @@ $products = getProducts($conn);
                     <th>Price</th>
                     <th>Description</th>
                     <th>Warranty Length (Months)</th>
-                    <th>Select Quantity</th>
-                    <th>Confirm</th>
+                    <th>Quantity</th>
+                    <th>Select</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +119,7 @@ $products = getProducts($conn);
                         echo '<td>$' . htmlspecialchars($product['sale_price']) . '</td>';
                         echo '<td>' . htmlspecialchars($product['description']) . '</td>';
                         echo '<td>' . htmlspecialchars($product['warranty_length']) . '</td>';
-                        echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="0" value="0"></td>';
+                        echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="1" value="1"></td>';
                         echo '<td><input type="checkbox" name="product_ids[]" value="' . htmlspecialchars($product['id']) . '"></td>';
                         echo '</tr>';
                     }
@@ -114,7 +161,7 @@ function getProducts($conn) {
 function getCategories($conn) {
     $sql = "SELECT * FROM product_categories";
     $result = $conn->query($sql);
-
+ 
     $categories = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
