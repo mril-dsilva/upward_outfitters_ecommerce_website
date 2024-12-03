@@ -24,6 +24,8 @@
     </style>
 </head>
 <body>
+    <!-- Include Navigation Bar  -->
+    <?php require 'navbar.php'; ?>
     <div class="container">
         
         <h1>Upward Outfitters</h1>
