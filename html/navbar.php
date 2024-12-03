@@ -32,7 +32,7 @@
     <!-- Navigation Bar -->
     <nav>
         <ul>
-        <li><a href="home.php">Home</a></li>    
+        <li><a href="homepage.php">Home</a></li>    
         <?php
             if (isset($_SESSION['user_role'])) {
                 if ($_SESSION['user_role'] == 1) { // Employee
