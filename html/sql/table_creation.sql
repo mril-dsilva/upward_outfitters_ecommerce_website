@@ -105,10 +105,11 @@ CREATE TABLE product_sizes (
 
 -- Product Sizes Table
 CREATE TABLE products_size (
-    product_id INT PRIMARY KEY,
-    product_size VARCHAR(50),
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
-    FOREIGN KEY (product_size) REFERENCES product_sizes(product_size)
+    product_id          INT,
+    product_size        VARCHAR(50),
+    PRIMARY KEY         (product_id, product_size),
+    FOREIGN KEY         (product_id) REFERENCES products(product_id),
+    FOREIGN KEY         (product_size) REFERENCES product_sizes(product_size)
 );
 
 -- Locations Table
@@ -239,4 +240,22 @@ CREATE TABLE inventory (
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
+-- Users Table
+CREATE TABLE users (
+    user_id                  INT NOT NULL AUTO_INCREMENT,
+    user_username            VARCHAR(50) NOT NULL UNIQUE,
+    user_password            VARCHAR(255) NOT NULL,
+    user_role                INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (user_id)
+);
 
+-- Source all of the prepared statements
+SOURCE create_product_create.sql;
+SOURCE create_product_delete.sql;
+SOURCE create_product_retrieve.sql;
+SOURCE create_product_update.sql;
+SOURCE create_elevate_user_role.sql;
+SOURCE create_user_retrieve.sql;
+SOURCE create_user_create.sql;
+
+SOURCE populate_sample_data.sql;

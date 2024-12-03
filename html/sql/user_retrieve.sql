@@ -1,0 +1,1 @@
+CALL retrieve_user(?, ?);

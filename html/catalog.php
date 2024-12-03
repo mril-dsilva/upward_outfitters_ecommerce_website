@@ -13,6 +13,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+session_start();
+
 //Retrieve the Product Data
 $products = getProducts($conn); 
 
@@ -25,7 +27,7 @@ $products = getProducts($conn);
     <title>Product Catalog</title> 
 </head>
 <body>
-        <!-- Include Navigation Bar -->
+        <!-- Include Navigation Bar  -->
         <?php require 'navbar.php'; ?>
 
 
