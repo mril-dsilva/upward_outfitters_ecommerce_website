@@ -1,6 +1,6 @@
 <?php
 
-$config = parse_ini_file('/../../mysql.ini');
+$config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
     $config['mysqli.default_host'],
