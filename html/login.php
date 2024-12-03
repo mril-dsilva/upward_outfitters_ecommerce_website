@@ -93,6 +93,7 @@ function login($conn, $param_username, $param_password){
 
     $sel_username = $login_queries[0][0];
     $sel_role = $login_queries[0][1];
+    $sel_partner_id = $login_queries[0][2];
 
     # Redirect here if the select didn't return anything.
     if ($sel_username == null){
@@ -102,6 +103,7 @@ function login($conn, $param_username, $param_password){
 
     $_SESSION["username"] = $sel_username; 
     $_SESSION["user_role"] = $sel_role;
+    $_SESSION["partner_id"] = $partner_id;
 
     header("Location: inventory.php", true, 303);
     exit();

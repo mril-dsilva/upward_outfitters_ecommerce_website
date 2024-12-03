@@ -246,7 +246,9 @@ CREATE TABLE users (
     user_username            VARCHAR(50) NOT NULL UNIQUE,
     user_password            VARCHAR(255) NOT NULL,
     user_role                INT NOT NULL DEFAULT 0,
-    PRIMARY KEY (user_id)
+    partner_id               INT NOT NULL,
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (partner_id) REFERENCES partners(partner_id)
 );
 
 -- Source all of the prepared statements
