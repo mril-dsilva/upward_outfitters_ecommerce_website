@@ -22,7 +22,7 @@
     
     # If user is already logged in, redirect them to the homepage
     if(array_key_exists('username', $_SESSION)) {
-        header("Location: inventory.php", true, 303);
+        header("Location: homepage.php", true, 303);
         exit();
     }
 
@@ -105,7 +105,7 @@ function login($conn, $param_username, $param_password){
     $_SESSION["user_role"] = $sel_role;
     $_SESSION["partner_id"] = $partner_id;
 
-    header("Location: inventory.php", true, 303);
+    header("Location: homepage.php", true, 303);
     exit();
 }
 
