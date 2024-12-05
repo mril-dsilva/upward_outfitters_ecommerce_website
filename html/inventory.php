@@ -57,9 +57,6 @@
 <html>
     <link rel="stylesheet" href="basic.css">
     <body>
-        <!-- Include Navigation Bar  -->
-        <?php require 'navbar.php'; ?>
-        
         <h1>Inventory</h1>
 
         <form action="inventory.php" method="GET">
@@ -435,10 +432,10 @@ function create_product($conn) {
         $discontinued, $partner, $discount, $length, $size,
         $shoe_size, $capacity);
 
-    $name = $_POST['product_name'];
-    $price = $_POST['product_price'];
-    $desc = $_POST['product_desc'];
-    $warranty = $_POST['product_warranty_length'];
+    $name = htmlspecialchars($_POST['product_name']);
+    $price = htmlspecialchars($_POST['product_price']);
+    $desc = htmlspecialchars($_POST['product_desc']);
+    $warranty = htmlspecialchars($_POST['product_warranty_length']);
 
     $discontinued = 0;
 
@@ -446,13 +443,13 @@ function create_product($conn) {
         $discontinued = 1;
     }
 
-    $discount = $_POST['product_discount_pct'];
-    $category = $_POST['product_category_id'];
-    $partner = $_POST['product_partner_id'];
+    $discount = htmlspecialchars($_POST['product_discount_pct']);
+    $category = htmlspecialchars($_POST['product_category_id']);
+    $partner = htmlspecialchars($_POST['product_partner_id']);
 
-    $length = $_POST['product_length'];
-    $shoe_size = $_POST['product_shoe_size'];
-    $capacity = $_POST['product_capacity'];
+    $length = htmlspecialchars($_POST['product_length']);
+    $shoe_size = htmlspecialchars($_POST['product_shoe_size']);
+    $capacity = htmlspecialchars($_POST['product_capacity']);
     
     if ($shoe_size == '') {
         $shoe_size = null;
@@ -466,13 +463,13 @@ function create_product($conn) {
         $capacity = null;
     }
 
-    $size = $_POST['product_size_id'];
+    $size = htmlspecialchars($_POST['product_size_id']);
 
     if ($size == "none") {
         $size = null;
     }
 
-    $brand = $_POST['product_brand_id'];
+    $brand = htmlspecialchars($_POST['product_brand_id']);
 
     if ($brand == "none") {
         $brand = null;
@@ -504,11 +501,11 @@ function update_product($conn) {
         $discontinued, $partner, $discount, $length, $size,
         $shoe_size, $capacity);
 
-    $id = $_POST['u_product_id'];
-    $name = $_POST['u_product_name'];
-    $price = $_POST['u_product_price'];
-    $desc = $_POST['u_product_desc'];
-    $warranty = $_POST['u_product_warranty_length'];
+    $id = htmlspecialchars($_POST['u_product_id']);
+    $name = htmlspecialchars($_POST['u_product_name']);
+    $price = htmlspecialchars($_POST['u_product_price']);
+    $desc = htmlspecialchars($_POST['u_product_desc']);
+    $warranty = htmlspecialchars($_POST['u_product_warranty_length']);
 
     $discontinued = 0;
 
@@ -516,13 +513,13 @@ function update_product($conn) {
         $discontinued = 1;
     }
 
-    $discount = $_POST['u_product_discount_pct'];
-    $category = $_POST['u_product_category_id'];
-    $partner = $_POST['u_product_partner_id'];
+    $discount = htmlspecialchars($_POST['u_product_discount_pct']);
+    $category = htmlspecialchars($_POST['u_product_category_id']);
+    $partner = htmlspecialchars($_POST['u_product_partner_id']);
 
-    $length = $_POST['u_product_length'];
-    $shoe_size = $_POST['u_product_shoe_size'];
-    $capacity = $_POST['u_product_capacity'];
+    $length = htmlspecialchars($_POST['u_product_length']);
+    $shoe_size = htmlspecialchars($_POST['u_product_shoe_size']);
+    $capacity = htmlspecialchars($_POST['u_product_capacity']);
     
     if ($shoe_size == '') {
         $shoe_size = null;
@@ -536,13 +533,13 @@ function update_product($conn) {
         $capacity = null;
     }
 
-    $size = $_POST['u_product_size_id'];
+    $size = htmlspecialchars($_POST['u_product_size_id']);
 
     if ($size == "none") {
         $size = null;
     }
 
-    $brand = $_POST['u_product_brand_id'];
+    $brand = htmlspecialchars($_POST['u_product_brand_id']);
 
     if ($brand == "none") {
         $brand = null;
@@ -763,7 +760,7 @@ function create_brand($conn) {
 
     $add_stmt -> bind_param('s', $name);
 
-    $name = $_POST['c_brand_name'];
+    $name = htmlspecialchars($_POST['c_brand_name']);
 
     $result = $add_stmt -> execute();
 
@@ -788,8 +785,8 @@ function update_brand($conn) {
 
     $upd_stmt -> bind_param('is', $id, $name);
 
-    $id = $_POST['u_brand_id'];
-    $name = $_POST['u_brand_name'];
+    $id = htmlspecialchars($_POST['u_brand_id']);
+    $name = htmlspecialchars($_POST['u_brand_name']);
     
     $result = $upd_stmt -> execute();
 
@@ -886,7 +883,7 @@ function create_category($conn) {
 
     $add_stmt -> bind_param('s', $name);
 
-    $name = $_POST['c_category_name'];
+    $name = htmlspecialchars($_POST['c_category_name']);
 
     $result = $add_stmt -> execute();
 
@@ -911,8 +908,8 @@ function update_category($conn) {
 
     $upd_stmt -> bind_param('is', $id, $name);
 
-    $id = $_POST['u_category_id'];
-    $name = $_POST['u_category_name'];
+    $id = htmlspecialchars($_POST['u_category_id']);
+    $name = htmlspecialchars($_POST['u_category_name']);
     
     $result = $upd_stmt -> execute();
 
@@ -1009,7 +1006,7 @@ function create_size($conn) {
 
     $add_stmt -> bind_param('s', $name);
 
-    $name = $_POST['c_size_name'];
+    $name = htmlspecialchars($_POST['c_size_name']);
 
     $result = $add_stmt -> execute();
 

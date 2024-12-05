@@ -22,7 +22,7 @@
     
     # If user is already logged in, redirect them to the homepage
     if(array_key_exists('username', $_SESSION)) {
-        header("Location: inventory.php", true, 303);
+        header("Location: homepage.php", true, 303);
         exit();
     }
 
@@ -82,8 +82,8 @@ function login($conn, $param_username, $param_password){
     // Bind id parameter to delete statement
     $login_stmt -> bind_param('ss', $username, $password);
 
-    $username = $param_username;
-    $password = $param_password;
+    $username = htmlspecialchars($param_username);
+    $password = htmlspecialchars($param_password);
 
     $login_stmt -> execute();
 
@@ -105,7 +105,7 @@ function login($conn, $param_username, $param_password){
     $_SESSION["user_role"] = $sel_role;
     $_SESSION["partner_id"] = $partner_id;
 
-    header("Location: inventory.php", true, 303);
+    header("Location: homepage.php", true, 303);
     exit();
 }
 
@@ -131,11 +131,26 @@ function register($conn){
 
     $register_stmt -> bind_param('ss', $username, $password);
 
-    $username = $_POST["r_username"];
-    $password = $_POST["r_password"];
+    $username = htmlspecialchars($_POST["r_username"]);
+    $password = htmlspecialchars($_POST["r_password"]);
 
     $register_stmt -> execute();
 
-    login($conn, $_POST["r_username"], $_POST["r_password"]);
+    $reg_result = $register_stmt -> get_result();
+
+    $reg_queries = $reg_result -> fetch_all();
+
+    $reg_success = $reg_queries[0][0];
+
+    $reg_result -> close();
+    $conn -> next_result();
+
+    // SQL statement will return 0 if the register request failed and 1 if it didn't.
+    if($reg_success){
+        login($conn, $_POST["r_username"], $_POST["r_password"]);
+    }else{
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+        exit();
+    }
 }
 ?>
