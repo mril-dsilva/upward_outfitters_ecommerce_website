@@ -1,3 +1,8 @@
+ <!-- Include Navigation Bar function php-->
+<?php 
+require 'navbar.php'; 
+?>
+
 <?php
 
 $config = parse_ini_file('../../mysql.ini');
@@ -27,9 +32,8 @@ $products = getProducts($conn);
     <title>Product Catalog</title> 
 </head>
 <body>
-        <!-- Include Navigation Bar  -->
-        <?php require 'navbar.php'; ?>
 
+<?php   show_navbar($conn);   ?>
 
     <h1>Product Catalog</h1>
 

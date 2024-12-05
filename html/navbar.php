@@ -1,7 +1,8 @@
-<?php require 'check_authentication.php'; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<?php
+
+// Function to 
+function show_navbar($conn) {
+    ?>
 <style>
         /* styling for the navigation bar */
         nav {
@@ -27,12 +28,12 @@
         }
         
     </style>
-</head>
-<body>
+
+
     <!-- Navigation Bar -->
     <nav>
         <ul>
-        <li><a href="homepage.php">Home</a></li>    
+        <li><a href="home.php">Home</a></li>    
         <?php
             if (isset($_SESSION['user_role'])) {
                 if ($_SESSION['user_role'] == 1) { // Employee
@@ -56,24 +57,7 @@
             <li><a href="logout.php"><img src="log_out_icon.png" alt="Log Out Icon" style="width:20px; height:20px;filter: invert(1);"></a></li>
         </ul>
     </nav>
-
-</body>
-</html>
-<?php
-// Function to retrieve categories from the database
-function getCategories($conn) {
-    $sql = "SELECT * FROM product_categories";
-    $result = $conn->query($sql);
- 
-    $categories = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $categories[] = [
-                'id' => $row['product_category_id'],
-                'name' => $row['product_category_name'],
-            ];
+    <?php
         }
-    }
-    return $categories;
-}
-?>
+        ?>
+        
