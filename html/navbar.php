@@ -1,6 +1,5 @@
 <?php
-
-// Function to 
+// Function to create a navbar
 function show_navbar($conn) {
     ?>
 <style>
