@@ -134,8 +134,24 @@ function register($conn){
     $username = $_POST["r_username"];
     $password = $_POST["r_password"];
 
-    $register_stmt -> execute();
+    $result = $register_stmt -> execute();
 
-    login($conn, $_POST["r_username"], $_POST["r_password"]);
+    // if($result){
+    //     login($conn, $_POST["r_username"], $_POST["r_password"]);
+    // }else{
+    //     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+    //     exit();
+    // }
+
+    // $reg_result = $register_stmt -> get_result();
+
+    // $reg_queries = $reg_result -> fetch_all();
+
+    // if($reg_queries[0] == "good"){
+    //     login($conn, $_POST["r_username"], $_POST["r_password"]);
+    // }else{
+    //     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+    //     exit();
+    // }
 }
 ?>

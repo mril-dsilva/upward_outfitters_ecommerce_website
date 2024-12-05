@@ -10,6 +10,6 @@
     
     // Redirect the client to this page, but using a get request this time.
     // Code 303 means "See other"
-    header("Location: login.php", true, 303);
+    header("Location: index.php", true, 303);
     exit();
 ?>
