@@ -33,7 +33,8 @@ $products = getProducts($conn);
 </head>
 <body>
 
-<?php   show_navbar($conn);   ?>
+<?php  show_navbar($conn);   
+?>
 
     <h1>Product Catalog</h1>
 
