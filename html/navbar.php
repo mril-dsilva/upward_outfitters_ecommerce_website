@@ -48,7 +48,7 @@ function show_navbar($conn) {
             ?>
             <?php
             // Get categories from the database
-            $categories = getCategories($conn);
+            $categories = getProdCategories($conn);
             foreach ($categories as $category) {
                 echo '<li><a href="catalog.php?category=' . htmlspecialchars($category['id']) . '">' . htmlspecialchars($category['name']) . '</a></li>';
             }
@@ -59,7 +59,7 @@ function show_navbar($conn) {
     <?php
         }
         // Function to retrieve categories from the database
-function getCategories($conn) {
+function getProdCategories($conn) {
     $sql = "SELECT * FROM product_categories";
     $result = $conn->query($sql);
  
