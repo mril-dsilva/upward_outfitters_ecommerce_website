@@ -134,24 +134,23 @@ function register($conn){
     $username = $_POST["r_username"];
     $password = $_POST["r_password"];
 
-    $result = $register_stmt -> execute();
+    $register_stmt -> execute();
 
-    // if($result){
-    //     login($conn, $_POST["r_username"], $_POST["r_password"]);
-    // }else{
-    //     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-    //     exit();
-    // }
+    $reg_result = $register_stmt -> get_result();
 
-    // $reg_result = $register_stmt -> get_result();
+    $reg_queries = $reg_result -> fetch_all();
 
-    // $reg_queries = $reg_result -> fetch_all();
+    $reg_success = $reg_queries[0][0];
 
-    // if($reg_queries[0] == "good"){
-    //     login($conn, $_POST["r_username"], $_POST["r_password"]);
-    // }else{
-    //     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-    //     exit();
-    // }
+    $reg_result -> close();
+    $conn -> next_result();
+
+    // SQL statement will return 0 if the register request failed and 1 if it didn't.
+    if($reg_success){
+        login($conn, $_POST["r_username"], $_POST["r_password"]);
+    }else{
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+        exit();
+    }
 }
 ?>
