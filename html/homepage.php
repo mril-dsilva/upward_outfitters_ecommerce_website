@@ -1,3 +1,7 @@
+ <!-- Include Navigation Bar function php-->
+ <?php 
+require 'navbar.php'; 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -24,8 +28,10 @@
     </style>
 </head>
 <body>
-    <!-- Include Navigation Bar  -->
-    <?php require 'navbar.php'; ?>
+
+    <?php  show_navbar($conn);   
+    ?>
+
     <div class="container">
         
         <h1>Upward Outfitters</h1>

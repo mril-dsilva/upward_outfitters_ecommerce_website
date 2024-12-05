@@ -1,3 +1,8 @@
+ <!-- Include Navigation Bar function php-->
+ <?php 
+require 'navbar.php'; 
+?>
+
 <?php
 // Show all errors 
 ini_set('display_errors', 1);    
@@ -113,8 +118,9 @@ $partners = fetch_partners($conn);
     <title>Manage Partners</title>
 </head>
 <body>
-    <!-- Include Navigation Bar  -->
-    <?php require 'navbar.php'; ?>
+    <?php  show_navbar($conn);   
+    ?>
+
 
     <h1>Partners</h1>
 
