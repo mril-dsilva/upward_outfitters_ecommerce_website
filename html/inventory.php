@@ -1,3 +1,8 @@
+ <!-- Include Navigation Bar function php-->
+ <?php 
+require 'navbar.php'; 
+?>
+
 <?php
     // Show all errors from the PHP interpreter.
     ini_set('display_errors', 1);    
@@ -57,6 +62,10 @@
 <html>
     <link rel="stylesheet" href="basic.css">
     <body>
+    
+    <?php  show_navbar($conn);   
+    ?>
+
         <h1>Inventory</h1>
 
         <form action="inventory.php" method="GET">

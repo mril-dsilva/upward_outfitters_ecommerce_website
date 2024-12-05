@@ -1,3 +1,8 @@
+ <!-- Include Navigation Bar function php-->
+ <?php 
+require 'navbar.php'; 
+?>
+
 <?php
   // Show all errors from the PHP interpreter.
   ini_set('display_errors', 1);
@@ -172,8 +177,9 @@
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
-  <!-- Include Navigation Bar  -->
-  <?php require 'navbar.php'; ?>
+  <?php  show_navbar($conn);   
+  ?>
+
 
   <?php function create_options($result_rows) { ?>
       <?php for ($i = 0; $i < count($result_rows); $i++) { ?>

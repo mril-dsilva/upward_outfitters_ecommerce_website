@@ -142,6 +142,9 @@
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
+  <?php  show_navbar($conn);   
+  ?>
+
   <h1>Cart</h1>
   <table>
     <tr><th>Product</th><th>Price</th></tr>
