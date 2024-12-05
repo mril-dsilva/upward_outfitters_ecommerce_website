@@ -82,8 +82,8 @@ function login($conn, $param_username, $param_password){
     // Bind id parameter to delete statement
     $login_stmt -> bind_param('ss', $username, $password);
 
-    $username = $param_username;
-    $password = $param_password;
+    $username = htmlspecialchars($param_username);
+    $password = htmlspecialchars($param_password);
 
     $login_stmt -> execute();
 
@@ -131,8 +131,8 @@ function register($conn){
 
     $register_stmt -> bind_param('ss', $username, $password);
 
-    $username = $_POST["r_username"];
-    $password = $_POST["r_password"];
+    $username = htmlspecialchars($_POST["r_username"]);
+    $password = htmlspecialchars($_POST["r_password"]);
 
     $register_stmt -> execute();
 
