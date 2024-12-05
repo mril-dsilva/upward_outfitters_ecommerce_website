@@ -177,7 +177,10 @@ require 'navbar.php';
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
-  <?php  show_navbar($conn);   
+  <?php
+    $conn = create_connection($config, $dbname);  
+    show_navbar($conn);   
+    $conn->close();
   ?>
 
 
