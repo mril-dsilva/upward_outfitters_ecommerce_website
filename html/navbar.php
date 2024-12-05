@@ -35,7 +35,9 @@ function show_navbar($conn) {
         <li><a href="homepage.php">Home</a></li>    
         <?php
             if (isset($_SESSION['user_role'])) {
+                echo $_SESSION['user_role'];
                 if ($_SESSION['user_role'] == 1) { // Employee
+                
                     echo '<li><a href="inventory.php">Inventory</a></li>';
                     echo '<li><a href="partners.php">Partners</a></li>';
                     echo '<li><a href="transactions.php">Transactions</a></li>';
