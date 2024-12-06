@@ -88,10 +88,28 @@ $products = getProducts($conn);
                         }
 
                         echo '<tr>';
-                        echo '<td>' . htmlspecialchars($product['name']) . '</td>';
-                        echo '<td>$' . (htmlspecialchars($product['sale_price']) * (1 - htmlspecialchars($product['discount_pct']))) . '</td>';
-                        echo '<td>' . htmlspecialchars($product['description']) . '</td>';
-                        echo '<td>' . htmlspecialchars($product['warranty_length']) . '</td>';
+                        echo '<td>' . htmlspecialchars($product['product_name']) . '</td>';
+                        echo '<td>$' . htmlspecialchars($product['product_sale_price']) . '</td>';
+                        echo '<td>' . htmlspecialchars($product['product_description']) . '</td>';
+                        echo '<td>' . htmlspecialchars($product['product_warranty_length']) . '</td>';
+                        if($product['product_lengths'] !== null){
+                            echo '<td>' . htmlspecialchars($product['product_lengths']) . '</td>';
+                        }
+                        else{
+                            echo '<td>' . " " . '</td>';
+                        }
+                        if($product['product_sizes'] !== null){
+                            echo '<td>' . htmlspecialchars($product['product_sizes']) . '</td>';
+                        }
+                        else{
+                            echo '<td>' . " " . '</td>';
+                        }
+                        if($product['product_brand_name'] !== null){
+                            echo '<td>' . htmlspecialchars($product['product_brand_name']) . '</td>';
+                        }
+                        else{
+                            echo '<td>' . " " . '</td>';
+                        }
                         echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="1" value="1"></td>';
                         echo '<td><input type="checkbox" name="product_ids[]" value="' . htmlspecialchars($product['id']) . '"></td>';
                         echo '</tr>';
@@ -109,26 +127,47 @@ $products = getProducts($conn);
 
 <?php
 
-// Function to retrieve products from the database
 function getProducts($conn) {
-    $sql = "SELECT * FROM products";
+    $sql = "
+    SELECT 
+        p.product_id,
+        p.product_name,
+        p.product_sale_price,
+        p.product_description,
+        p.product_warranty_length,
+        pb.product_brand_name,
+        pc.product_category_name,
+        p.product_discontinued,
+        p.product_discount_pct,
+        GROUP_CONCAT(DISTINCT pl.product_length ORDER BY pl.product_length ASC) AS product_lengths,
+        GROUP_CONCAT(DISTINCT ps.product_size ORDER BY ps.product_size ASC) AS product_sizes,
+        GROUP_CONCAT(DISTINCT pss.product_shoe_size ORDER BY pss.product_shoe_size ASC) AS product_shoe_sizes,
+        GROUP_CONCAT(DISTINCT pcap.product_capacity ORDER BY pcap.product_capacity ASC) AS product_capacities
+    FROM 
+        products p
+    LEFT JOIN 
+        product_brands pb ON p.product_brand_id = pb.product_brand_id
+    LEFT JOIN 
+        product_categories pc ON p.product_category_id = pc.product_category_id
+    LEFT JOIN 
+        products_length pl ON p.product_id = pl.product_id
+    LEFT JOIN 
+        products_size ps ON p.product_id = ps.product_id
+    LEFT JOIN 
+        products_shoe_size pss ON p.product_id = pss.product_id
+    LEFT JOIN 
+        products_capacity pcap ON p.product_id = pcap.product_id
+    GROUP BY 
+        p.product_id, p.product_name, p.product_sale_price, p.product_description, 
+        p.product_warranty_length, pb.product_brand_name, pc.product_category_name,
+        p.product_discontinued, p.product_discount_pct";
+    
     $result = $conn->query($sql);
-
-    $products = [];
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $products[] = [
-                'id' => $row['product_id'],
-                'name' => $row['product_name'],
-                'sale_price' => $row['product_sale_price'],
-                'discount_pct' => $row['product_discount_pct'],
-                'description' => $row['product_description'],
-                'warranty_length' => $row['product_warranty_length'],
-                'category_id' => $row['product_category_id'],
-            ];
-        }
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        return [];
     }
-    return $products;
 }
 
 // Function to retrieve categories from the database
