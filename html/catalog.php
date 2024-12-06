@@ -10,6 +10,14 @@ require 'navbar.php';
 
 <?php
 
+// Show all errors from the PHP interpreter.
+ini_set('display_errors', 1);    
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Show all errors from the MySQLi Extension.
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);  
+
 $config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
@@ -22,8 +30,6 @@ $conn = new mysqli(
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-session_start();
 
 //Retrieve the Product Data
 $products = getProducts($conn); 
@@ -83,7 +89,7 @@ $products = getProducts($conn);
 
                         echo '<tr>';
                         echo '<td>' . htmlspecialchars($product['name']) . '</td>';
-                        echo '<td>$' . htmlspecialchars($product['sale_price']) . '</td>';
+                        echo '<td>$' . (htmlspecialchars($product['sale_price']) * (1 - htmlspecialchars($product['discount_pct']))) . '</td>';
                         echo '<td>' . htmlspecialchars($product['description']) . '</td>';
                         echo '<td>' . htmlspecialchars($product['warranty_length']) . '</td>';
                         echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="1" value="1"></td>';
@@ -115,6 +121,7 @@ function getProducts($conn) {
                 'id' => $row['product_id'],
                 'name' => $row['product_name'],
                 'sale_price' => $row['product_sale_price'],
+                'discount_pct' => $row['product_discount_pct'],
                 'description' => $row['product_description'],
                 'warranty_length' => $row['product_warranty_length'],
                 'category_id' => $row['product_category_id'],

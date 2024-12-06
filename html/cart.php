@@ -23,7 +23,7 @@
   if (array_key_exists("quantity", $_POST) and array_key_exists("product_ids", $_POST)) {
     // Get names of products adn set cart data in session
     $conn = create_connection($config, $dbname);
-    $statement = $conn->prepare("SELECT product_name, product_sale_price FROM products WHERE product_id = ?");
+    $statement = $conn->prepare("SELECT product_name, product_sale_price, product_discount_pct FROM products WHERE product_id = ?");
     $statement->bind_param("i", $product_id);
     $cart_data = [];
     $total_price = 0;
@@ -35,15 +35,15 @@
         $cart_empty = false;
         $statement->execute();
         $statement->store_result();
-        $statement->bind_result($product_name, $product_price);
+        $statement->bind_result($product_name, $product_price, $product_discount_pct);
         while ($statement->fetch()) {
           $cart_data[] = [
             'id' => $product_id,
             'name' => $product_name,
             'quantity' => $quantity,
-            'price' => $product_price
+            'price' => $product_price * (1 - $product_discount_pct)
           ];
-          $total_price += $quantity * $product_price;
+          $total_price += $quantity * $product_price * (1 - $product_discount_pct);
         }
       }
     }

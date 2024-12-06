@@ -10,6 +10,14 @@ require 'navbar.php';
 
 <?php
 
+// Show all errors from the PHP interpreter.
+ini_set('display_errors', 1);    
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Show all errors from the MySQLi Extension.
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);  
+
 $config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
@@ -66,7 +74,6 @@ $products = getProducts($conn);
                 <tr>
                     <th>Product Name</th>
                     <th>Price</th>
-                    <th>Discount</th>
                     <th>Description</th>
                     <th>Warranty Length (Months)</th>
                     <th>Quantity</th>
@@ -84,8 +91,7 @@ $products = getProducts($conn);
 
                         echo '<tr>';
                         echo '<td>' . htmlspecialchars($product['name']) . '</td>';
-                        echo '<td>$' . strval(floatval(htmlspecialchars($product['sale_price'])) * floatval((1 - htmlspecialchars($product['discount_pct'])))) . '</td>';
-                        echo '<td>' . htmlspecialchars($product['discount_pct']) . '</td>';
+                        echo '<td>$' . htmlspecialchars($product['sale_price']) . '</td>';
                         echo '<td>' . htmlspecialchars($product['description']) . '</td>';
                         echo '<td>' . htmlspecialchars($product['warranty_length']) . '</td>';
                         echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="1" value="1"></td>';
