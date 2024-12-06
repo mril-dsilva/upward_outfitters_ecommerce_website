@@ -14,5 +14,3 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-CALL create_customer_partner(?, ?, ?, ?, ?);

@@ -259,6 +259,8 @@ SOURCE create_product_update.sql;
 SOURCE create_elevate_user_role.sql;
 SOURCE create_user_retrieve.sql;
 SOURCE create_user_create.sql;
+SOURCE partner_customer_create.sql;
+SOURCE partner_supplier_create.sql;
 
 SOURCE discontinued_trigger.sql;
 
