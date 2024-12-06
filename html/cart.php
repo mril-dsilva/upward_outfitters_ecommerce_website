@@ -106,6 +106,16 @@
         exit();
       }
     }
+
+    // preorder
+    if ($_POST["is_preorder"]) {
+      $statement = $conn->prepare("INSERT INTO preorders(transaction_id) VALUES (?)");
+      $statement->bind_param("i", $transaction_id);
+      if (!$statement->execute()){
+        echo "Create statement failed!\n";
+        exit();
+      }
+    }
     $conn->close();
     // Transaction added
     // Clear cart data and return to catalog
@@ -165,6 +175,8 @@
   <p>Grand Total: $<?= number_format($total_price, 2) ?></p>
 
   <form method="POST">
+    <label for="is_preorder">Preoder?</label>
+    <input type="checkbox" name="is_preorder" value="preorder" />
     <input type="submit" name="buy" value="Buy items in cart." />
   </form>
 </body>
