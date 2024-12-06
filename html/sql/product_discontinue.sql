@@ -1,4 +1,3 @@
 UPDATE products
-   SET product_discontinued = TRUE,
-       product_discount_pct = 0.50
+   SET product_discontinued = TRUE
  WHERE product_id = (?);

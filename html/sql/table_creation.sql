@@ -260,4 +260,6 @@ SOURCE create_elevate_user_role.sql;
 SOURCE create_user_retrieve.sql;
 SOURCE create_user_create.sql;
 
+SOURCE discontinued_trigger.sql;
+
 SOURCE populate_sample_data.sql;
