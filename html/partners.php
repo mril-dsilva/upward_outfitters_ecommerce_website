@@ -1,3 +1,8 @@
+<?php
+    require 'check_authentication.php';
+    check_auth();
+?>
+
  <!-- Include Navigation Bar function php-->
  <?php 
 require 'navbar.php'; 
@@ -116,6 +121,7 @@ $partners = fetch_partners($conn);
 <html>
 <head>
     <title>Manage Partners</title>
+    <link rel="stylesheet" href="basic.css">
 </head>
 <body>
     <?php  show_navbar($conn);   

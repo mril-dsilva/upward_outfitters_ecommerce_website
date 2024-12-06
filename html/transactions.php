@@ -1,3 +1,8 @@
+<?php
+    require 'check_authentication.php';
+    check_auth();
+?>
+
  <!-- Include Navigation Bar function php-->
  <?php 
 require 'navbar.php'; 
@@ -17,9 +22,7 @@ require 'navbar.php';
   $dbname = "upward_outfitters";
   $queries_path = "./sql/";
 
-  // -- Handling session -------------------------------------------------------
-  session_start();  // need to use session to keep track of
-                    // which products the user chose to add to the transaction
+  
   // Set default for session variables if not set
   if (!array_key_exists("new_transaction_products", $_SESSION)) {
     $_SESSION["new_transaction_products"] = [];

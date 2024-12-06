@@ -1,3 +1,8 @@
+<?php
+    require 'check_authentication.php';
+    check_auth();
+?>
+
  <!-- Include Navigation Bar function php-->
 <?php 
 require 'navbar.php'; 
@@ -30,6 +35,7 @@ $products = getProducts($conn);
 <html lang="en">
 <head>
     <title>Product Catalog</title> 
+	<link rel="stylesheet" href="basic.css">
 </head>
 <body>
 

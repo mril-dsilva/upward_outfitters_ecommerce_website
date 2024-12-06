@@ -34,7 +34,6 @@ function show_navbar($conn) {
         <ul>
         <li><a href="homepage.php">Home</a></li>    
         <?php
-            echo $_SESSION['user_role'];
             if (isset($_SESSION['user_role'])) {
                 
                 if ($_SESSION['user_role'] == 1) { // Employee

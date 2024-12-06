@@ -1,3 +1,8 @@
+<?php
+    require 'check_authentication.php';
+    check_auth();
+?>
+
  <!-- Include Navigation Bar function php-->
  <?php 
 require 'navbar.php'; 
@@ -7,6 +12,15 @@ require 'navbar.php';
     ini_set('display_errors', 1);    
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+
+# Create new connection, specifying the database we care about
+    $config = parse_ini_file('../../mysql.ini');
+    $dbname = 'upward_outfitters';
+    $conn = new mysqli(
+            $config['mysqli.default_host'],
+            $config['mysqli.default_user'],
+            $config['mysqli.default_pw'],
+            $dbname);
 ?>
 
 <!DOCTYPE html>

@@ -1,4 +1,9 @@
 <?php
+    require 'check_authentication.php';
+    check_auth();
+?>
+
+<?php
   // Show all errors from the PHP interpreter.
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -11,10 +16,6 @@
   $config = parse_ini_file('../../mysql.ini');
   $dbname = "upward_outfitters";
   $queries_path = "./sql/";
-
-  session_start();  // need to use session to 
-                    // create new transaction based on previous POST data
-                    // when clicking buy
 
   if (array_key_exists("quantity", $_POST) and array_key_exists("product_ids", $_POST)) {
     // Get names of products adn set cart data in session
