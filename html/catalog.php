@@ -70,10 +70,13 @@ $products = getProducts($conn);
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Product Name</th>
+                <th>Product Name</th>
                     <th>Price</th>
                     <th>Description</th>
                     <th>Warranty Length (Months)</th>
+                    <th>Lengths</th>
+                    <th>Sizes</th>
+                    <th>Brand</th>
                     <th>Quantity</th>
                     <th>Select</th>
                 </tr>
