@@ -1,3 +1,6 @@
+<?php 
+  require 'navbar.php'; 
+?>
 <?php
     require 'check_authentication.php';
     check_auth();
@@ -143,7 +146,10 @@
   <link rel="stylesheet" href="basic.css">
 </head>
 <body>
-  <?php  show_navbar($conn);   
+  <?php
+    $conn = create_connection($config, $dbname);
+    show_navbar($conn);
+    $conn->close();
   ?>
 
   <h1>Cart</h1>
