@@ -13,7 +13,11 @@ INSERT INTO addresses (address_line_1, address_line_2, address_city, state_abbre
 --partners
 INSERT INTO partners (partner_name, address_id, partner_phone_number, partner_email) VALUES 
 ('PeakTools Supplier', 1, '123-456-7890', 'contact@peaktools.com'),
-('John Doe', 2, '987-654-3210', 'johndoe@fmail.com');
+('John Doe', 2, '987-654-3210', 'johndoe@fmail.com'),
+('Jackson Arnold', null, null, null);
+
+INSERT INTO users (user_username, user_password, user_role, partner_id) VALUES
+('jackson', PASSWORD('pass'), 1, 3);
 
 --suppliers
 INSERT INTO suppliers (partner_id) VALUES 
@@ -22,6 +26,8 @@ INSERT INTO suppliers (partner_id) VALUES
 --customers
 INSERT INTO customers (partner_id) VALUES 
 (2);
+
+
 
 --product categories
 INSERT INTO product_categories (product_category_name) VALUES 
@@ -53,7 +59,9 @@ INSERT INTO products (product_name, product_sale_price, product_description, pro
 ('Belay Device SmoothDescent', 35.0, 'Auto-locking belay device', 4, 1),
 ('Quickdraw Set (12cm)', 45.0, 'Lightweight quickdraw set for sport climbing', 1, 1),
 ('Quickdraw Set (18cm)', 50.0, 'Lightweight quickdraw set for sport climbing', 1, 1),
-('Quickdraw Set (24cm)', 55.0, 'Lightweight quickdraw set for sport climbing', 1, 1);
+('Quickdraw Set (24cm)', 55.0, 'Lightweight quickdraw set for sport climbing', 1, 1),
+('Hat', 20.0, 'Cool Hat', 5, 2),
+('Tent', 2000.0, 'Ultralight Tent', 8, 3);
 
     -- Adding product subtable info 
     INSERT INTO products_length (product_id, product_length) VALUES 
