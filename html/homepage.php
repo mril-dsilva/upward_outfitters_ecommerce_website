@@ -8,10 +8,6 @@
 require 'navbar.php'; 
 ?>
 <?php
-    // Show all errors from the PHP interpreter.
-    ini_set('display_errors', 1);    
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
 
 # Create new connection, specifying the database we care about
     $config = parse_ini_file('../../mysql.ini');
