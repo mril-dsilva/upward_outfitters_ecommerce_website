@@ -145,7 +145,7 @@ function getProducts($conn) {
         pc.product_category_name,
         p.product_discontinued,
         p.product_discount_pct,
-	p.category_id,
+	p.product_category_id,
         GROUP_CONCAT(DISTINCT pl.product_length ORDER BY pl.product_length ASC) AS product_lengths,
         GROUP_CONCAT(DISTINCT ps.product_size ORDER BY ps.product_size ASC) AS product_sizes,
         GROUP_CONCAT(DISTINCT pss.product_shoe_size ORDER BY pss.product_shoe_size ASC) AS product_shoe_sizes,
