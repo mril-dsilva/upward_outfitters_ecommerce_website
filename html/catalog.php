@@ -89,7 +89,7 @@ $products = getProducts($conn);
                 if (!empty($products)) {
                     foreach ($products as $product) {
                         // Filter by selected category if necessary
-                        if (!empty($_GET['category']) && $_GET['category'] != $product['category_id']) {
+                        if (!empty($_GET['category']) && $_GET['category'] != $product['product_category_id']) {
                             continue;
                         }
 
