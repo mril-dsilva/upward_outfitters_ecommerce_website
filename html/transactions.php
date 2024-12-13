@@ -44,7 +44,7 @@ require 'navbar.php';
   // ---- Handling form submissions --------------------------------------------
   // Add new product entry to the new transaction
   if (array_key_exists("add_product_to_new_transaction", $_POST)) {
-    $product_id = $_POST["new_transaction_product_id"];
+    $product_id = htmlspecialchars($_POST["new_transaction_product_id"]);
     $conn = create_connection($config, $dbname);
     $prepared_query = $conn->prepare("SELECT product_name, product_sale_price FROM products WHERE product_id = ?");
     $prepared_query->bind_param("i", $product_id);
@@ -110,9 +110,9 @@ require 'navbar.php';
     );
 
     foreach ($_SESSION["new_transaction_products"] as $entry) {
-      $product_id = $entry["id"];
-      $product_quantity = $entry["quantity"];
-      $product_price = $entry["price"];
+      $product_id = htmlspecialchars($entry["id"]);
+      $product_quantity = htmlspecialchars($entry["quantity"]);
+      $product_price = htmlspecialchars($entry["price"]);
       $prepared_create_statement->execute();
       if (!$create_result){
         echo "Create statement failed!\n";
