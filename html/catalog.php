@@ -10,6 +10,8 @@ require 'navbar.php';
 
 <?php
 
+$sql_location = './sql/';
+
 $config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
@@ -46,19 +48,14 @@ $products = getProducts($conn);
     <h1>Product Catalog</h1>
 
     <!--  Product Category Filter -->
-    <form method="GET" action="">
-        <label for="category">Filter by Category:</label>
-        <select name="category" id="category">
-            <option value="">All Categories</option>
-            <?php
-            // Get categories from the database
-            foreach ($categories as $category) {
-                echo '<option value="' . htmlspecialchars($category['id']) . '">' . htmlspecialchars($category['name']) . '</option>';
-            }
-            ?>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
+    <form action="catalog.php" method="GET">
+            <label for="category">Filter by Category</label>
+            <select name="category">
+                <option value="">All Categories</option>
+                <?php create_category_options($conn) ?>
+            </select>
+            <input type="submit" value="Filter" />
+        </form>
 
     <!-- Display Products in a Table with Add to Cart Option -->
     <form method="POST" action="cart.php">
@@ -81,7 +78,7 @@ $products = getProducts($conn);
                 if (!empty($products)) {
                     foreach ($products as $product) {
                         // Filter by selected category if necessary
-                        if (!empty($_GET['category']) && $_GET['category'] != $product['category_id']) {
+                        if (!empty($_GET['category']) && $_GET['category'] != $product['product_category_id']) {
                             continue;
                         }
 
@@ -108,8 +105,8 @@ $products = getProducts($conn);
                         else{
                             echo '<td>' . " " . '</td>';
                         }
-                        echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="1" value="1"></td>';
-                        echo '<td><input type="checkbox" name="product_ids[]" value="' . htmlspecialchars($product['id']) . '"></td>';
+                        echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['product_id']) . ']" min="1" value="1"></td>';
+                        echo '<td><input type="checkbox" name="product_ids[]" value="' . htmlspecialchars($product['product_id']) . '"></td>';
                         echo '</tr>';
                     }
                 } else {
@@ -137,6 +134,7 @@ function getProducts($conn) {
         pc.product_category_name,
         p.product_discontinued,
         p.product_discount_pct,
+	p.product_category_id,
         GROUP_CONCAT(DISTINCT pl.product_length ORDER BY pl.product_length ASC) AS product_lengths,
         GROUP_CONCAT(DISTINCT ps.product_size ORDER BY ps.product_size ASC) AS product_sizes,
         GROUP_CONCAT(DISTINCT pss.product_shoe_size ORDER BY pss.product_shoe_size ASC) AS product_shoe_sizes,
@@ -183,6 +181,25 @@ function getCategories($conn) {
         }
     }
     return $categories;
+}
+
+function create_category_options($conn){
+    global $sql_location;
+
+    $sel_tbl = file_get_contents($sql_location . 'category_retrieve.sql');
+    $result = $conn -> query($sel_tbl);
+
+    $queries = $result -> fetch_all();
+    $n_rows = $result -> num_rows;
+    $n_cols = $result -> field_count;
+    $fields = $result -> fetch_fields();
+    $result -> close();
+    $conn -> next_result();
+
+    for ($i = 0; $i < $n_rows; $i++){
+        $id = $queries[$i][0]; ?>
+        <option value=<?php echo $id;?>><?php echo $queries[$i][1];?></option>
+    <?php }
 }
 
 // Close the database connection
