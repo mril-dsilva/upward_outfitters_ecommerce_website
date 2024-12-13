@@ -24,12 +24,13 @@
     // Get names of products adn set cart data in session
     $conn = create_connection($config, $dbname);
     $statement = $conn->prepare("SELECT product_name, product_sale_price, product_discount_pct FROM products WHERE product_id = ?");
-    $statement->bind_param("i", htmlspecialchars($product_id));
+    $statement->bind_param("i", $escaped_product_id);
     $cart_data = [];
     $total_price = 0;
 
     $cart_empty = true;
     foreach ($_POST["product_ids"] as $product_id) {
+      $escaped_product_id = htmlspecialchars($product_id);
       $quantity = $_POST["quantity"][$product_id];
       if ($quantity > 0) {
         $cart_empty = false;
@@ -97,9 +98,9 @@
       $product_price
     );
     foreach ($_SESSION["cart_data"] as $entry) {
-      $product_id = $entry["id"];
-      $product_quantity = $entry["quantity"];
-      $product_price = $entry["price"];
+      $product_id = htmlspecialchars($entry["id"]);
+      $product_quantity = htmlspecialchars($entry["quantity"]);
+      $product_price = htmlspecialchars($entry["price"]);
       $prepared_create_statement->execute();
       if (!$create_result){
         echo "Create statement failed!\n";
