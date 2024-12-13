@@ -9,6 +9,8 @@ require 'navbar.php';
 ?>
 
 <?php
+echo "test";
+ini_set("display_errors", "off");
 ini_set('display_errors', 0);
 
 $sql_location = "./sql/"; 
