@@ -10,14 +10,6 @@ require 'navbar.php';
 
 <?php
 
-// Show all errors from the PHP interpreter.
-ini_set('display_errors', 1);    
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Show all errors from the MySQLi Extension.
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);  
-
 $config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
