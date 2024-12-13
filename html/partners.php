@@ -47,11 +47,11 @@ function create_customer_partner($conn) {
     $stmt = $conn->prepare($create_stmt);
     $stmt->bind_param('issss', $id, $name, $address, $phone, $email);
 
-    $id = $_POST['partner_id'];
-    $name = $_POST['partner_name'];
-    $address = $_POST['address_id'];
-    $phone = $_POST['partner_phone'];
-    $email = $_POST['partner_email'];
+    $id = htmlspecialchars($_POST['partner_id']);
+    $name = htmlspecialchars($_POST['partner_name']);
+    $address = htmlspecialchars($_POST['address_id']);
+    $phone = htmlspecialchars($_POST['partner_phone']);
+    $email = htmlspecialchars($_POST['partner_email']);
 
     $stmt->execute();
     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
@@ -64,11 +64,11 @@ function create_supplier_partner($conn) {
     $stmt = $conn->prepare($create_stmt);
     $stmt->bind_param('issss', $id, $name, $address, $phone, $email);
 
-    $id = $_POST['partner_id'];
-    $name = $_POST['partner_name'];
-    $address = $_POST['address_id'];
-    $phone = $_POST['partner_phone'];
-    $email = $_POST['partner_email'];
+    $id = htmlspecialchars($_POST['partner_id']);
+    $name = htmlspecialchars($_POST['partner_name']);
+    $address = htmlspecialchars($_POST['address_id']);
+    $phone = htmlspecialchars($_POST['partner_phone']);
+    $email = htmlspecialchars($_POST['partner_email']);
 
     $stmt->execute();
     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
@@ -82,11 +82,11 @@ function update_partner($conn) {
     $stmt = $conn->prepare($update_stmt);
     $stmt->bind_param('ssssi', $name, $address, $phone, $email, $id);
 
-    $id = $_POST['partner_id'];
-    $name = $_POST['partner_name'];
-    $address = $_POST['address_id'];
-    $phone = $_POST['partner_phone'];
-    $email = $_POST['partner_email'];
+    $id = htmlspecialchars($_POST['partner_id']);
+    $name = htmlspecialchars($_POST['partner_name']);
+    $address = htmlspecialchars($_POST['address_id']);
+    $phone = htmlspecialchars($_POST['partner_phone']);
+    $email = htmlspecialchars($_POST['partner_email']);
 
     $stmt->execute();
     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
@@ -99,7 +99,8 @@ function delete_partners($conn) {
         foreach ($_POST['delete'] as $id) {
             $delete_stmt = file_get_contents($sql_location . "partner_delete.sql");
             $stmt = $conn->prepare($delete_stmt);
-            $stmt->bind_param('i', $id);
+            $stmt->bind_param('i', $escaped_id);
+            $escaped_id = htmlspecialchars($id);
             $stmt->execute();
         }
         header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
