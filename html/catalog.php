@@ -57,9 +57,9 @@ $products = getProducts($conn);
 
     <!--  Product Category Filter -->
     <form action="catalog.php" method="GET">
-            <label for="product_category_filter">Filter by Category</label>
-            <select name="product_category_filter">
-                <option value=-1></option>
+            <label for="category">Filter by Category</label>
+            <select name="category">
+                <option value=-1>All Categories</option>
                 <?php create_category_options($conn) ?>
             </select>
             <input type="submit" value="Filter" />
