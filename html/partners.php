@@ -9,6 +9,8 @@ require 'navbar.php';
 ?>
 
 <?php
+ini_set('display_errors', 0);
+
 $sql_location = "./sql/"; 
 
 $config = parse_ini_file('../../mysql.ini');
