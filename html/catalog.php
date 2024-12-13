@@ -59,7 +59,7 @@ $products = getProducts($conn);
     <form action="catalog.php" method="GET">
             <label for="category">Filter by Category</label>
             <select name="category">
-                <option value=-1>All Categories</option>
+                <option value="">All Categories</option>
                 <?php create_category_options($conn) ?>
             </select>
             <input type="submit" value="Filter" />
