@@ -116,8 +116,8 @@ $products = getProducts($conn);
                         else{
                             echo '<td>' . " " . '</td>';
                         }
-                        echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['id']) . ']" min="1" value="1"></td>';
-                        echo '<td><input type="checkbox" name="product_ids[]" value="' . htmlspecialchars($product['id']) . '"></td>';
+                        echo '<td><input type="number" name="quantity[' . htmlspecialchars($product['product_id']) . ']" min="1" value="1"></td>';
+                        echo '<td><input type="checkbox" name="product_ids[]" value="' . htmlspecialchars($product['product_id']) . '"></td>';
                         echo '</tr>';
                     }
                 } else {
