@@ -24,7 +24,7 @@
     // Get names of products adn set cart data in session
     $conn = create_connection($config, $dbname);
     $statement = $conn->prepare("SELECT product_name, product_sale_price, product_discount_pct FROM products WHERE product_id = ?");
-    $statement->bind_param("i", $product_id);
+    $statement->bind_param("i", htmlspecialchars($product_id));
     $cart_data = [];
     $total_price = 0;
 
