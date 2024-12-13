@@ -9,13 +9,6 @@ require 'navbar.php';
 ?>
 
 <?php
-// Show all errors 
-ini_set('display_errors', 1);    
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
 $sql_location = "./sql/"; 
 
 $config = parse_ini_file('../../mysql.ini');
