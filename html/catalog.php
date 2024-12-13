@@ -54,19 +54,14 @@ $products = getProducts($conn);
     <h1>Product Catalog</h1>
 
     <!--  Product Category Filter -->
-    <form method="GET" action="">
-        <label for="category">Filter by Category:</label>
-        <select name="category" id="category">
-            <option value="">All Categories</option>
-            <?php
-            // Get categories from the database
-            foreach ($categories as $category) {
-                echo '<option value="' . htmlspecialchars($category['id']) . '">' . htmlspecialchars($category['name']) . '</option>';
-            }
-            ?>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
+    <form action="catalog.php" method="GET">
+            <label for="product_category_filter">Filter by Category</label>
+            <select name="product_category_filter">
+                <option value=-1></option>
+                <?php create_category_options($conn) ?>
+            </select>
+            <input type="submit" value="Filter" />
+        </form>
 
     <!-- Display Products in a Table with Add to Cart Option -->
     <form method="POST" action="cart.php">
@@ -192,6 +187,25 @@ function getCategories($conn) {
         }
     }
     return $categories;
+}
+
+function create_category_options($conn){
+    global $sql_location;
+
+    $sel_tbl = file_get_contents($sql_location . 'category_retrieve.sql');
+    $result = $conn -> query($sel_tbl);
+
+    $queries = $result -> fetch_all();
+    $n_rows = $result -> num_rows;
+    $n_cols = $result -> field_count;
+    $fields = $result -> fetch_fields();
+    $result -> close();
+    $conn -> next_result();
+
+    for ($i = 0; $i < $n_rows; $i++){
+        $id = $queries[$i][0]; ?>
+        <option value=<?php echo $id;?>><?php echo $queries[$i][1];?></option>
+    <?php }
 }
 
 // Close the database connection
