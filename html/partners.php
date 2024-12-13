@@ -96,7 +96,7 @@ function delete_partners($conn) {
             $stmt = $conn->prepare($delete_stmt);
             $stmt->bind_param('i', $escaped_id);
             $escaped_id = htmlspecialchars($id);
-            $stmt->execute();
+            @$stmt->execute();
         }
         header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
         exit();
