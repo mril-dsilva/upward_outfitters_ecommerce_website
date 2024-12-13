@@ -18,6 +18,8 @@ error_reporting(E_ALL);
 // Show all errors from the MySQLi Extension.
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);  
 
+$sql_location = './sql/';
+
 $config = parse_ini_file('../../mysql.ini');
 $dbname = 'upward_outfitters';
 $conn = new mysqli(
