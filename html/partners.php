@@ -9,12 +9,9 @@ require 'navbar.php';
 ?>
 
 <?php
-// Show all errors 
-ini_set('display_errors', 1);    
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+echo "test";
+ini_set("display_errors", "off");
+ini_set('display_errors', 0);
 
 $sql_location = "./sql/"; 
 
@@ -101,7 +98,7 @@ function delete_partners($conn) {
             $stmt = $conn->prepare($delete_stmt);
             $stmt->bind_param('i', $escaped_id);
             $escaped_id = htmlspecialchars($id);
-            $stmt->execute();
+            @$stmt->execute();
         }
         header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
         exit();
